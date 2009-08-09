@@ -1,1 +1,12 @@
-%p new session
+%h1 Login
+-form_tag sessions_path do
+  .field
+    =label_tag 'login'
+    =text_field_tag 'login', @login
+  
+  .field
+    =label_tag 'password'
+    =password_field_tag 'password', nil
+
+  .field
+    =submit_tag 'Login'

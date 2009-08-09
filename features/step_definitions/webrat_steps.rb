@@ -11,6 +11,10 @@ When /^I go to (.+)$/ do |page_name|
   visit path_to(page_name)
 end
 
+When /^I route to the (.+)$/ do |page_name|
+  eval("visit #{page_name}")
+end
+
 When /^I press "([^\"]*)"$/ do |button|
   click_button(button)
 end
