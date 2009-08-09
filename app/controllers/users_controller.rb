@@ -1,7 +1,6 @@
-class UsersController < ApplicationController
-  before_filter :admin_required, :except => [:index]
-  
+class UsersController < ApplicationController  
   def index
+    @users = User.all
   end
   
   def new
@@ -9,6 +8,7 @@ class UsersController < ApplicationController
   end
   
   def edit
+    @user = User.get(params[:id])
   end
   
   def create
@@ -19,5 +19,22 @@ class UsersController < ApplicationController
     else
       render :action => "new"
     end
+  end
+  
+  def update
+    @user = User.get(params[:id])
+    if @user.update_attributes(params[:user])
+      flash[:notice] = 'User was successfully updated.'
+      redirect_to users_path
+    else
+      render :action => "new"
+    end
+  end
+  
+  def destroy
+    @user = User.get(params[:id])
+    @user.destroy
+    flash[:notice] = 'User successfully deleted'
+    redirect_to users_path
   end
 end

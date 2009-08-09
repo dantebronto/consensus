@@ -3,8 +3,8 @@ class User
 
   attr_accessor :password, :password_confirmation
 
-  property :id, Serial, :protected => true
-  property :email, String, :key => true, :nullable => false, :length => (5..40), :unique => true, :format => :email_address
+  property :id, Serial, :key => true, :protected => true
+  property :email, String, :nullable => false, :length => (5..40), :unique => true, :format => :email_address
   property :login, String, :unique => true, :nullable => false
   property :hashed_password, String
   property :salt, String, :protected => true, :nullable => false
@@ -34,6 +34,10 @@ class User
 
   def guest?
     self.permission_level == 0
+  end
+  
+  def to_param
+    @id.to_s
   end
   
   protected
