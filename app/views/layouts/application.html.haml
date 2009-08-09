@@ -1,0 +1,24 @@
+!!!
+%html
+  %head
+    %title= @title || "Mondragon"
+    =stylesheet_link_tag 'main'
+  %body
+    #container
+      #header
+        #logo
+          %h1
+            %a{:href => '/'}= "Mondragon"
+            .login
+              =render_login_logout
+            
+        =flashes
+            
+      #content 
+        =yield
+      #footer
+        %p#legal
+          &mdash;
+          ="Mondragon Cooperative Software by"
+          %a{:href => 'http://github.com/dantebronto'} Kellen Presley
+          &mdash;

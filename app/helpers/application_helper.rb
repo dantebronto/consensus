@@ -1,4 +1,13 @@
 module ApplicationHelper
+  def flashes
+    ret = ''
+    flash.each do |k,v|
+      ret << "<div class='flash_#{key}'>"
+      ret << v
+      ret << "</div>"
+    end
+  end
+  
   def login_required
     if session[:user]
       return true
