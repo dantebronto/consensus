@@ -23,4 +23,8 @@ class Vote
   def to_param
     @id.to_s
   end
+  
+  def tally_total
+    self.topics.sum(:tally)
+  end
 end

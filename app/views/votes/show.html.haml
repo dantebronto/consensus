@@ -1,9 +1,42 @@
+=javascript_include_tag 'js-class'
+=javascript_include_tag 'bluff-min'
+
+:plain
+  <script type="text/javascript">
+    function drawGraph(){
+      var g = new Bluff.Pie('pie-chart', 400);
+      g.theme_keynote();
+      g.title = 'Current Vote';
+      
+-@vote.topics.each do |topic|
+  ="g.data('#{topic.name}', #{topic.tally});"
+  
+:plain
+      g.draw();
+    }
+
+    $(document).ready(function(){ 
+      drawGraph();
+    });
+  </script>
+
 %h1=@vote.name
 
 .field
   Type =
   =@vote.type.humanize
   
-  %ul
-  -@vote.topics.each do |topic|
-    %li= topic.name
+  %table
+    %tr
+      %th Name
+      %th Votes
+      %th Percentage
+    -@vote.topics.each do |topic|
+      %tr
+        %td=topic.name
+        %td=topic.tally
+        - percentage = (topic.tally.to_f / @vote.tally_total) * 100
+        %td=sprintf("%.1f", percentage)
+    
+  %canvas#pie-chart
+  
