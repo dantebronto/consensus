@@ -13,6 +13,6 @@
       %td= user.permission_level
       %td= link_to 'Edit', edit_user_path(user)
       %td= link_to 'Delete', user, :confirm => 'Are you sure?', :method => :delete
-      
+
 %p
   =link_to 'New user', new_user_path

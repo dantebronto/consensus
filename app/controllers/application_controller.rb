@@ -1,9 +1,6 @@
-# Filters added to this controller apply to all controllers in the application.
-# Likewise, all the methods added will be available for all controllers.
-
 class ApplicationController < ActionController::Base
-  helper :all # include all helpers, all the time
-  protect_from_forgery # See ActionController::RequestForgeryProtection for details
+  helper :all
+  protect_from_forgery
   
   before_filter :login_required
   
@@ -32,9 +29,9 @@ class ApplicationController < ActionController::Base
   def current_user
     return @current_user if @current_user
     if session[:user]
-      @current_user = User.first(:id => session[:user])
+      @current_user = User.get(session[:user])
     else
-      @current_user = User.new(permission_level => 0)
+      @current_user = User.new(:permission_level => 0)
     end
   end
 

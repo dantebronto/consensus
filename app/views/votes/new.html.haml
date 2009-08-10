@@ -1,0 +1,24 @@
+%h1 Create a vote
+
+- form_for @vote do |f|
+  =f.error_messages
+
+  .field
+    =f.label 'name'
+    =f.text_field 'name'
+
+  .field
+    =f.label 'type'
+    =f.select 'type', Vote::VOTE_TYPES.map {|x| [x.humanize, x]}
+    
+  .add_topics
+    %a#add_topic{:href => "javascript:void(0)"} Add Topic [+]
+    
+  .field
+    =f.submit params[:action] == "new" ? 'Create' : 'Update'
+    
+#topic_snippet{:style => "display:none"}
+  .field
+    %label{:for => "vote_topic"}Topic ###
+    %input{:name => "vote[topics][]", :type=> "text"}
+    

@@ -14,7 +14,6 @@ Rails::Initializer.run do |config|
   config.gem 'dm-migrations', :version => '0.9.11'
 
   config.gem 'haml', :version => "2.2.2"
-  config.gem 'mislav-will_paginate', :lib => 'will_paginate', :source => 'http://gems.github.com', :version => '2.3.11'
   config.gem 'jscruggs-metric_fu', :lib => 'metric_fu', :source => 'http://gems.github.com'
   config.gem 'thoughtbot-factory_girl', :lib => 'factory_girl', :source => 'http://gems.github.com'
 

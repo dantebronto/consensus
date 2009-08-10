@@ -1,6 +1,8 @@
 class User
   include DataMapper::Resource
 
+  has n, :votes
+  
   attr_accessor :password, :password_confirmation
 
   property :id, Serial, :key => true, :protected => true

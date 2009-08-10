@@ -1,0 +1,9 @@
+%h1=@vote.name
+
+.field
+  Type =
+  =@vote.type.humanize
+  
+  %ul
+  -@vote.topics.each do |topic|
+    %li= topic.name

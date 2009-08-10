@@ -1,1 +1,8 @@
-%p this is test
+%p Welcome!
+
+- if logged_in?
+  .nav
+    %ul
+      - if current_user.admin?
+        %li=link_to 'Manage users', users_path
+      %li=link_to 'Active Votes', votes_path
