@@ -1,7 +1,7 @@
 namespace :setup do
   desc "create the admin user"
   task :admin => :environment do
-    admin = User.first(:permission_level => -1)
+    admin = User.first(:conditions => {:permission_level => -1})
     if admin
       puts "Admin user already exists"
     else

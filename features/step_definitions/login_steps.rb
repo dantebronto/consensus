@@ -1,5 +1,5 @@
 Given /^there is a User whose login is "([^\"]*)"$/ do |arg1|
-  raise "No user with that login" unless User.all.map(&:login).include?(arg1)
+  Factory(:user, :login => "kellen")
 end
 
 Given /^there is not a User whose login is "([^\"]*)"$/ do |arg1|

@@ -29,7 +29,7 @@ class ApplicationController < ActionController::Base
   def current_user
     return @current_user if @current_user
     if session[:user]
-      @current_user = User.get(session[:user])
+      @current_user = User.find_by_id(session[:user])
     else
       @current_user = User.new(:permission_level => 0)
     end
