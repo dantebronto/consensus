@@ -8,8 +8,8 @@
     =f.text_field 'name'
 
   .field
-    =f.label 'type'
-    =f.select 'type', Vote::VOTE_TYPES.map {|x| [x.humanize, x]}
+    =f.label 'kind'
+    =f.select 'kind', Vote::VOTE_TYPES.map {|x| [x.humanize, x]}
     
   .add_topics
     %a#add_topic{:href => "javascript:void(0)"} Add Topic [+]
@@ -19,6 +19,5 @@
     
 #topic_snippet{:style => "display:none"}
   .field
-    %label{:for => "vote_topic"}Topic ###
-    %input{:name => "vote[topics][]", :type=> "text"}
-    
+    %label{:for => "vote_option"}Option ###
+    %input{:name => "options[]", :type=> "text"}

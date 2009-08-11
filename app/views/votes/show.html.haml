@@ -8,8 +8,8 @@
       g.theme_keynote();
       g.title = 'Current Vote';
       
--@vote.topics.each do |topic|
-  ="g.data('#{topic.name}', #{topic.tally});"
+-@vote.options.each do |opt|
+  ="g.data('#{opt.name}', #{opt.tallies.length});"
   
 :plain
       g.draw();
@@ -23,20 +23,20 @@
 %h1=@vote.name
 
 .field
-  ="#{@vote.type.humanize} vote"
+  ="#{@vote.kind.humanize} vote"
   
   %table
     %tr
       %th Option
       %th Votes
       %th Percentage
-    -@vote.topics.each do |topic|
+    -@vote.options.each do |opt|
       %tr
-        %td=topic.name
-        %td=topic.tally
-        - percentage = (topic.tally.to_f / @vote.tally_total) * 100
-        %td=sprintf("%.1f", percentage)
-    
-  .chart_wrapper  
-    %canvas#pie-chart
+        %td=opt.name
+        %td=opt.tallies.count
+        %td=@vote.percentage(opt)
+  
+  -if @vote.tallies.count > 0  
+    .chart_wrapper  
+      %canvas#pie-chart
   

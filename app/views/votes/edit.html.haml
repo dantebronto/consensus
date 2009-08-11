@@ -7,21 +7,21 @@
     =f.label 'name'
     =f.text_field 'name'
   .field
-    =f.label 'type'
-    =f.select 'type', Vote::VOTE_TYPES.map {|x| [x.humanize, x]}
+    =f.label 'kind'
+    =f.select 'kind', Vote::VOTE_TYPES.map {|x| [x.humanize, x]}
   .field
-    ="#{@vote.type.humanize} vote"
+    ="#{@vote.kind.humanize} vote"
 
     %table
       %tr
         %th Option
         %th 
-      -@vote.topics.each do |topic|
+      -@vote.options.each do |opt|
         %tr
           %td
-            %label{:for => "vote_name"}=topic.name
+            %label{:for => "vote_name"}=opt.name
           %td
-            %input{ :id => topic.id, :name => "topics[#{topic.id}]", :type => "checkbox" }
+            %input{ :id => opt.id, :name => "options[#{opt.id}]", :type => "checkbox" }
             
   .field
     =f.submit 'Cast your vote'

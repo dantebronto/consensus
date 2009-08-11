@@ -4,7 +4,7 @@ class VotesController < ApplicationController
   end
   
   def show
-    @vote = Vote.get(params[:id])
+    @vote = Vote.find_by_id(params[:id]) #, :include => [ {:tallies => :option}, :options ])
   end
   
   def new
@@ -12,12 +12,13 @@ class VotesController < ApplicationController
   end
   
   def edit
-    @vote = Vote.get(params[:id])
+    @vote = Vote.find_by_id(params[:id])
   end
   
   def create
     @vote = Vote.new(params[:vote])
-    @vote.user = current_user
+    params[:options].each { |opt| @vote.options.build(:name => opt) } if params[:options]
+
     if @vote.save
       flash[:notice] = 'Vote was successfully created.'
       redirect_to votes_path
@@ -27,22 +28,19 @@ class VotesController < ApplicationController
   end
   
   def update
-    @vote = Vote.get(params[:id])
-    topic_ids = params[:topics].keys
+    @vote = Vote.find_by_id(params[:id])
+    option_ids = params[:options].keys
 
-    @vote.topics.each do |v|
-      if topic_ids.include?(v.id.to_s)
-        v.tally = v.tally + 1
-        v.save
-      end
+    @vote.options.each do |opt|
+      opt.tallies.create(:user => current_user, :vote => @vote, :value => 1) if option_ids.include?(opt.id.to_s)
     end
-    
+
     flash[:notice] = 'Vote was successfully cast.'
     redirect_to @vote
   end
   
   def destroy
-    @vote = Vote.get(params[:id])
+    @vote = Vote.find_by_id(params[:id])
     @vote.destroy
     flash[:notice] = 'Vote successfully deleted'
     redirect_to votes_path

@@ -10,6 +10,17 @@ class Vote < ActiveRecord::Base
   VOTE_TYPES = ["single_option", "multi_option", "condorcet", "allocation"]
     
   def tally_total
-    self.topics.sum(:tally)
+    self.tallies.count
   end
+  
+  def assign_options(ara)
+    self.options = ara.map { |opt| Option.new(:name => opt) }
+  end
+  
+  def percentage(option)
+    return 0 if self.tally_total == 0
+    percent = (option.tallies.count.to_f / self.tally_total) * 100
+    sprintf("%.1f", percent)
+  end
+  
 end
