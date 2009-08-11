@@ -1,0 +1,27 @@
+%h1 Vote
+
+- form_for @vote do |f|
+  =f.error_messages
+
+  .field
+    =f.label 'name'
+    =f.text_field 'name'
+  .field
+    =f.label 'type'
+    =f.select 'type', Vote::VOTE_TYPES.map {|x| [x.humanize, x]}
+  .field
+    ="#{@vote.type.humanize} vote"
+
+    %table
+      %tr
+        %th Option
+        %th 
+      -@vote.topics.each do |topic|
+        %tr
+          %td
+            %label{:for => "vote_name"}=topic.name
+          %td
+            %input{ :id => topic.id, :name => "topics[#{topic.id}]", :type => "checkbox" }
+            
+  .field
+    =f.submit 'Cast your vote'

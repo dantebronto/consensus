@@ -28,12 +28,17 @@ class VotesController < ApplicationController
   
   def update
     @vote = Vote.get(params[:id])
-    if @vote.update_attributes(params[:vote])
-      flash[:notice] = 'Vote was successfully updated.'
-      redirect_to votes_path
-    else
-      render :action => "new"
+    topic_ids = params[:topics].keys
+
+    @vote.topics.each do |v|
+      if topic_ids.include?(v.id.to_s)
+        v.tally = v.tally + 1
+        v.save
+      end
     end
+    
+    flash[:notice] = 'Vote was successfully cast.'
+    redirect_to @vote
   end
   
   def destroy

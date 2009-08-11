@@ -4,7 +4,7 @@
 :plain
   <script type="text/javascript">
     function drawGraph(){
-      var g = new Bluff.Pie('pie-chart', 400);
+      var g = new Bluff.Pie('pie-chart', 800);
       g.theme_keynote();
       g.title = 'Current Vote';
       
@@ -23,12 +23,11 @@
 %h1=@vote.name
 
 .field
-  Type =
-  =@vote.type.humanize
+  ="#{@vote.type.humanize} vote"
   
   %table
     %tr
-      %th Name
+      %th Option
       %th Votes
       %th Percentage
     -@vote.topics.each do |topic|
@@ -38,5 +37,6 @@
         - percentage = (topic.tally.to_f / @vote.tally_total) * 100
         %td=sprintf("%.1f", percentage)
     
-  %canvas#pie-chart
+  .chart_wrapper  
+    %canvas#pie-chart
   
