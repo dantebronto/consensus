@@ -6,10 +6,11 @@
     function drawGraph(){
       var g = new Bluff.Pie('pie-chart', 800);
       g.theme_keynote();
-      g.title = 'Current Vote';
+      g.title = 
+="'#{truncate(@vote.name, :length => 40)}';"
       
 -@vote.options.each do |opt|
-  ="g.data('#{opt.name}', #{opt.tallies.length});"
+  ="g.data('#{truncate(opt.name, :length => 30)}', #{opt.tallies.length});"
   
 :plain
       g.draw();

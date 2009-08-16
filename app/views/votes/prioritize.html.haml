@@ -1,0 +1,34 @@
+=javascript_include_tag 'jquery-ui-custom.min.js'
+
+:plain
+  <style type="text/css">
+  	#sortable { list-style-type: none; margin: 0; padding: 0; width: 60%; }
+  	#sortable li { margin: 0 5px 5px 5px; padding: 5px; font-size: 1.2em; height: 1.5em; }
+  	html>body #sortable li { height: 1.5em; line-height: 1.2em; }
+  	.ui-state-highlight { height: 1.5em; line-height: 1.2em; }
+  	</style>
+  	<script type="text/javascript">
+  	$(function() {
+  		$("#sortable").sortable({
+  			placeholder: 'ui-state-highlight'
+  		});
+  		$("#sortable").disableSelection();
+  	});
+  	</script>
+
+.demo
+  %ul#sortable
+    %li.ui-state-default
+      Item 1
+    %li.ui-state-default
+      Item 2
+    %li.ui-state-default
+      Item 3
+    %li.ui-state-default
+      Item 4
+    %li.ui-state-default
+      Item 5
+    %li.ui-state-default
+      Item 6
+    %li.ui-state-default
+      Item 7

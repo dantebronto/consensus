@@ -27,4 +27,8 @@ Feature: Basic Voting Flows
     And I press "Create"
     Then I should see "Name can't be blank"
     
-    
+  Scenario: Casting, Single-Option
+    Given I am logged in as a user
+    And a vote exists with three options
+    And I route to the edit_vote_path(Vote.first)
+    Then I should see "Options"

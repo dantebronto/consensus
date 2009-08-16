@@ -1,27 +1,18 @@
-%h1 Vote
-
 - form_for @vote do |f|
-  =f.error_messages
-
   .field
-    =f.label 'name'
-    =f.text_field 'name'
-  .field
-    =f.label 'kind'
-    =f.select 'kind', Vote::VOTE_TYPES.map {|x| [x.humanize, x]}
-  .field
-    ="#{@vote.kind.humanize} vote"
-
+    %h1=@vote.name
     %table
       %tr
-        %th Option
+        %th Options
         %th 
       -@vote.options.each do |opt|
         %tr
           %td
             %label{:for => "vote_name"}=opt.name
           %td
-            %input{ :id => opt.id, :name => "options[#{opt.id}]", :type => "checkbox" }
-            
+            -if @vote.kind == "single_option"
+              %input{ :id => opt.id, :name => "option[]", :type => "radio", :value => opt.id }
+            -else
+              %input{ :id => opt.id, :name => "options[#{opt.id}]", :type => "checkbox" }
   .field
     =f.submit 'Cast your vote'
