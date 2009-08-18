@@ -1,0 +1,41 @@
+=javascript_include_tag 'js-class'
+=javascript_include_tag 'bluff-min'
+
+:plain
+  <script type="text/javascript">
+    function drawGraph(){
+      var g = new Bluff.Pie('pie-chart', 800);
+      g.theme_keynote();
+      g.title = 
+="'#{truncate(@vote.name, :length => 40)}';"
+      
+-@vote.options.each do |opt|
+  ="g.data('#{truncate(opt.name, :length => 30)}', #{opt.average_percentage});"
+  
+:plain
+      g.draw();
+    }
+
+    $(document).ready(function(){ 
+      drawGraph();
+    });
+  </script>
+
+%h1=@vote.name
+
+.field
+  ="#{@vote.kind.humanize} showing #{@vote.votes_cast} #{@vote.votes_cast > 1 ? 'votes' : 'vote'}"
+  
+  %table
+    %tr
+      %th Option
+      %th Percentage
+    -@vote.options.each do |opt|
+      %tr
+        %td=opt.name
+        %td=opt.average_percentage
+  
+  -if @vote.tallies.count > 0  
+    .chart_wrapper  
+      %canvas#pie-chart
+  

@@ -15,14 +15,22 @@ class VotesController < ApplicationController
   
   def show
     @vote = Vote.find_by_id(params[:id]) #, :include => [ {:tallies => :option}, :options ])
+    case @vote.kind.to_sym
+    when :allocation then render :action => 'view_allocation'
+    when :condorcet  then render :action => 'view_condorcet'
+    end
   end
   
   def new
     @vote = Vote.new
   end
   
-  def edit
+  def cast
     @vote = Vote.find_by_id(params[:id])
+    case @vote.kind.to_sym
+    when :allocation then redirect_to :action => 'allocate'
+    when :condorcet  then redirect_to :action => 'prioritize'
+    end
   end
   
   def create
@@ -38,19 +46,8 @@ class VotesController < ApplicationController
   end
   
   def update
-    @vote = Vote.find_by_id(params[:id])
-    
-    if @vote.kind == "single_option"
-      if params[:option]
-        opt = @vote.options.find_by_id(params[:option].first)
-        opt.tallies.create(:vote => @vote, :user => current_user) if opt
-      end
-    else
-      option_ids = params[:options].keys
-      @vote.options.each do |opt|
-        opt.tallies.create(:user => current_user, :vote => @vote, :value => 1) if option_ids.include?(opt.id.to_s)
-      end
-    end
+    @vote = Vote.find_by_id(params[:id])  
+    @vote.handle_cast(params, current_user)
     
     flash[:notice] = 'Vote was successfully cast.'
     redirect_to @vote

@@ -1,0 +1,18 @@
+- form_for @vote do |f|
+  .field
+    %h1=@vote.name
+    %table
+      %tr
+        %th Options
+        %th 
+      -@vote.options.each do |opt|
+        %tr
+          %td
+            %label{:for => "vote_name"}=opt.name
+          %td
+            -if @vote.kind == "single_option"
+              %input{ :id => opt.id, :name => "option[]", :type => "radio", :value => opt.id }
+            -else
+              %input{ :id => opt.id, :name => "options[#{opt.id}]", :type => "checkbox" }
+  .field
+    =f.submit 'Cast your vote'

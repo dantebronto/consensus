@@ -16,19 +16,12 @@
   	});
   	</script>
 
-.demo
+
+
+- form_for @vote do |f|
   %ul#sortable
-    %li.ui-state-default
-      Item 1
-    %li.ui-state-default
-      Item 2
-    %li.ui-state-default
-      Item 3
-    %li.ui-state-default
-      Item 4
-    %li.ui-state-default
-      Item 5
-    %li.ui-state-default
-      Item 6
-    %li.ui-state-default
-      Item 7
+    - @vote.options.each do |opt|
+      %li.ui-state-default
+        =opt.name
+        %input{:type => "hidden", :value => opt.id, :size => 3, :name => "options[]"}
+  =f.submit "Cast your vote"

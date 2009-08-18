@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090811023456) do
+ActiveRecord::Schema.define(:version => 20090817034552) do
 
   create_table "options", :force => true do |t|
     t.integer  "vote_id"
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(:version => 20090811023456) do
     t.integer  "value"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "option_order"
   end
 
   create_table "users", :force => true do |t|

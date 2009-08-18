@@ -2,7 +2,7 @@
   $.fn.linked_slider = function(){
     var sliders = this;
     var num_opts = sliders.length;
-
+    
     var slider_set_initial = function(){ 
       initial_value = $(this).slider('option', 'value'); 
     };
@@ -47,6 +47,10 @@
       return cur_vals;
     };
     
+    var get_skip_id = function(elem){
+      return elem.attr('id').split('_').reverse()[0];
+    };
+    
     var input_adjust_others = function(){
       var elem = $(this);
       var val = elem.attr('value');
@@ -55,7 +59,7 @@
         return;
       }
       var diff = Number(val) - initial_value;
-      var skip_id = elem.attr('id').split("_").reverse()[0];
+      var skip_id = get_skip_id(elem);
       var my_slider = $('#slider_' + skip_id);
       my_slider.slider('option', 'value', Number(val));
       
@@ -65,7 +69,7 @@
     var slider_adjust_others = function(){
       var elem = $(this);
       var diff = elem.slider('option', 'value') - initial_value;
-      var skip_id = elem.attr('id').split('_').reverse()[0];
+      var skip_id = get_skip_id(elem);
       
       adjust_others_common(diff, elem, skip_id);
     };
@@ -98,18 +102,20 @@
       };
     };
     
-    return sliders.each(function(){      
+    sliders.each(function(){      
       $(this).slider({ // make div a jQuery UI slider
         start: slider_set_initial, 
         stop: slider_adjust_others
       });
-      
-      $(".slider_input")
-        .bind("focus", input_set_initial)
-        .bind("blur", input_adjust_others);
-      
-      set_initial_values_from_inputs();
     });
+    
+    $(".slider_input")
+      .bind("focus", input_set_initial)
+      .bind("blur", input_adjust_others);
+    
+    set_initial_values_from_inputs();
+    
+    return this;
   };
 })(jQuery);
 

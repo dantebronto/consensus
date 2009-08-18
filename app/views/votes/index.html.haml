@@ -2,14 +2,14 @@
 
 %table
   %tr
-    %td Type
     %td Name
+    %td Type
     %td{:colspan => 2}
   -@votes.each do |vote|
     %tr
       %td= vote.name
       %td= vote.kind.humanize
-      %td= link_to 'Vote', edit_vote_path(vote)
+      %td= link_to 'Vote', cast_vote_path(vote)
       %td= link_to 'Show', vote
       %td= link_to 'Delete', vote, :confirm => 'Are you sure?', :method => :delete
 
