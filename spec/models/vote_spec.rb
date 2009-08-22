@@ -2,10 +2,10 @@ require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe Vote do
 
-  describe 'condorcet voting' do
+  describe 'prioritization voting' do
     
     before do
-      @vote = Factory(:condorcet_vote)
+      @vote = Factory(:prioritization_vote)
       @al_op = Factory(:alice_opt)
       @bo_op = Factory(:bob_opt)
       @ch_op = Factory(:charlie_opt)
@@ -25,29 +25,26 @@ describe Vote do
     end
     
     it "should return the proper matrix for the first tally" do
-      @vote.tallies[0].matrix.should == [[-1, 1, 1], [0, -1, 1], [0, 0, -1]]
+      @vote.tallies[0].matrix.should == [[0, 1, 1], [-1, 0, 1], [-1, -1, 0]]
     end
     
     it "should return the proper matrix for the middle tally" do
-      @vote.tallies[1].matrix.should == [[-1, 0, 1], [1, -1, 1], [0, 0, -1]]
+      @vote.tallies[1].matrix.should == [[0, -1, 1], [1, 0, 1], [-1, -1, 0]]
     end
     
     it "should return the proper matrix for the last tally" do
-      @vote.tallies[2].matrix.should == [[-1, 0, 0], [1, -1, 0], [1, 1, -1]]
+      @vote.tallies[2].matrix.should == [[0, -1, -1], [1, 0, -1], [1, 1, 0]]
     end
     
     it "should correctly add the tally matrices" do
-      @vote.tally_matrix_sum.should  == [[-3, 1, 2], [2, -3, 2], [1, 1, -3]]
+      @vote.tally_matrix_sum.should  == [[0, -1, 1],  # alice: lost against bob, won against charlie
+                                         [1, 0, 1],   # bob: beat both alice and charlie (condorcet winner)
+                                         [-1, -1, 0]] # charlie: lost to alice and bob
     end
     
     it "should return the proper ordered options" do
-      @vote.ordered_options.should == [@al_op.id, @bo_op.id, @ch_op.id].map(&:to_s)
+      @vote.ordered_options.should == [@bo_op, @al_op, @ch_op] # expected order: bob, alice, charlie
     end
     
-    it "should create an ordered array from the ordered options" do
-      # @vote.ordered_options_weights.should == [@al_op.id, ]]
-    end
-    
-    #it "should correctly convert an array to a hash" do
   end
 end

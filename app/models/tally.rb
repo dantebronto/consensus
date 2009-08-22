@@ -11,11 +11,11 @@ class Tally < ActiveRecord::Base
       current_row = []
       option_ids.each_with_index do |inner_id, j|
         if outer_id == inner_id
-          current_row << -1
+          current_row << 0
         elsif original_order.index(outer_id) < original_order.index(inner_id)
           current_row << 1
         else
-          current_row << 0
+          current_row << -1
         end
       end
       retval << current_row

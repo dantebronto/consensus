@@ -2,6 +2,8 @@ class Option < ActiveRecord::Base
   belongs_to :vote
   has_many :tallies
   
+  attr_accessor :condorcet_score
+  
    # (number-of-tallies for this option / total vote tallies)
   def average_percentage
     count = self.tallies.count

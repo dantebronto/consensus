@@ -14,10 +14,11 @@ class VotesController < ApplicationController
   end
   
   def show
-    @vote = Vote.find_by_id(params[:id]) #, :include => [ {:tallies => :option}, :options ])
+    @vote = Vote.find_by_id(params[:id], :include => {:options => :tallies})
     case @vote.kind.to_sym
     when :allocation then render :action => 'view_allocation'
-    when :condorcet  then render :action => 'view_condorcet'
+    when :prioritization  then render :action => 'view_prioritization'
+    else render :action => 'show'
     end
   end
   
@@ -29,7 +30,7 @@ class VotesController < ApplicationController
     @vote = Vote.find_by_id(params[:id])
     case @vote.kind.to_sym
     when :allocation then redirect_to :action => 'allocate'
-    when :condorcet  then redirect_to :action => 'prioritize'
+    when :prioritization  then redirect_to :action => 'prioritize'
     end
   end
   

@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   
   before_filter :login_required
-  #foo
+  
   helper_method :current_user, :logged_in?
   
   def login_required

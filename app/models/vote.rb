@@ -1,5 +1,4 @@
 require 'matrix'
-require 'lib/runoff' # instant runoff voting
 
 class Vote < ActiveRecord::Base
   has_many :users, :through => :tallies
@@ -10,7 +9,7 @@ class Vote < ActiveRecord::Base
 
   has_many :options
   
-  VOTE_TYPES = ["single_option", "multi_option", "condorcet", "allocation"]
+  VOTE_TYPES = ["single_option", "multi_option", "prioritization", "allocation"]
   
   def handle_cast(params, current_user)
     case self.kind.to_sym
@@ -29,7 +28,7 @@ class Vote < ActiveRecord::Base
         value = params[:options][opt.id.to_s]
         opt.tallies.create(:user => current_user, :vote => self, :value => value)
       end
-    when :condorcet
+    when :prioritization
       self.tallies.create(:user => current_user, :option_order => params[:options].join("|"))
     end
   end
@@ -77,24 +76,26 @@ class Vote < ActiveRecord::Base
   
   def tally_matrix_sum
     matrices = tallies.map {|x| Matrix[*x.matrix] }
-    retval = Matrix.zero(tallies.count)
+    retval = Matrix.zero(options.count)
     matrices.each {|m| retval += m }
     retval.to_a
   end
   
   def ordered_options
-    tallies.first.option_order.split("|").sort
+    self.condorcet.each do |opt_id, score|
+      opt = self.options.select {|x| x.id == opt_id.to_i }.first
+      opt.condorcet_score = score
+    end
+    self.options.sort_by {|x| x.condorcet_score }.reverse
   end
-  
-  def ordered_array_from_sum_matrix
-    # self.tally_matrix_sum
-    # i = self.ordered_options.length
-    # h.sort_by { |k,v| v }
+
+  def condorcet
+    sum_matrix = tally_matrix_sum
+    sum_matrix.map! {|x| x.sum }
+    ret_hsh = {}
+    self.options.each_with_index do |opt, i| 
+      ret_hsh.merge!({ opt.id.to_s => sum_matrix[i] })
+    end
+    ret_hsh
   end
-  
-  def instant_runoff
-    vote_ara = self.tallies.map {|x| x.option_order_array }
-    InstantRunoffVote.new(vote_ara).result
-  end
-  
 end
