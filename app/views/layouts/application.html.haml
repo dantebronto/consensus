@@ -5,15 +5,48 @@
     =stylesheet_link_tag 'main'
     =javascript_include_tag 'jquery'
     =javascript_include_tag 'application'
+    
   %body
+    #menu-holder
+      %ul#menu
+        %li
+          %a{ :href => "/" }
+            %span
+              take me
+            %br
+            home
+        %li
+          %a{ :href => "/" }
+            %span
+              learn more
+            %br
+            About
+        - if logged_in?
+          %li
+            %a{ :href => "/votes" }
+              %span
+                view active
+              %br
+              votes
+          - if current_user.admin?
+            %li
+              %a{ :href => "/users" }
+                %span
+                  user admin
+                %br
+                manage
+        %li.last
+          =render_login_logout  
+        
+      %div{:style => "clear:both"}
+    
     #container
       #header
         #logo
           %h1
-            %a{:href => '/'}= "Mondragon"
-            .login
-              =render_login_logout
-            
+            %a{:href => '/'}= "The Mondragon Project"
+          %p cooperative management software
+
         =show_flashes
             
       #content 
@@ -21,6 +54,6 @@
       #footer
         %p#legal
           &mdash;
-          ="Mondragon Cooperative Software by"
+          ="mondragon cooperative management software by"
           %a{:href => 'http://github.com/dantebronto'} Kellen Presley
           &mdash;
