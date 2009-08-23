@@ -1,17 +1,19 @@
 %h1 Current Votes
 
 %table
-  %tr
-    %td Name
-    %td Type
-    %td{:colspan => 2}
-  -@votes.each do |vote|
+  %thead
     %tr
-      %td= vote.name
-      %td= vote.kind.humanize
-      %td= link_to 'Vote', cast_vote_path(vote)
-      %td= link_to 'Show', vote
-      %td= link_to 'Delete', vote, :confirm => 'Are you sure?', :method => :delete
+      %th Name
+      %th Type
+      %th{:colspan => 3}
+  %tbody
+    -@votes.each do |vote|
+      %tr
+        %td= truncate(vote.name, :length => 75)
+        %td= vote.kind.humanize
+        %td= link_to 'Vote', cast_vote_path(vote)
+        %td= link_to 'Show', vote
+        %td= link_to 'Delete', vote, :confirm => 'Are you sure?', :method => :delete
 
 %p
   =link_to 'New vote', new_vote_path

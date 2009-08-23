@@ -1,3 +1,22 @@
+/* prioritize */
+#sortable { list-style-type: none; margin: 0; padding: 0; width: 60%; }
+#sortable li { margin: 0 5px 5px 5px; padding: 5px; font-size: 1.2em; height: 1.5em; }
+html>body #sortable li { height: 1.5em; line-height: 1.2em; }
+.ui-state-highlight { height: 1.5em; line-height: 1.2em; }
+/* end prioritize */
+
+/* form stuff */
+div.field label { display:block; padding-right:0; text-align:left; width:100%; }
+div.field input { color:#333; font-size: 1.2em;}
+div.field { padding-bottom:5px; text-align:left; width:300px; }
+/* end form stuff */
+
+/* table stuff */
+table { border-collapse: collapse; text-align:left; border-top:3px solid #999999; width: 100%;}
+th { padding:2px 5px; background: #333; }
+td { padding:2px 5px; }
+/* end table stuff */
+
 .chart_wrapper { width:800px; margin-left:auto; margin-right:auto; }
 
 /* flashes */
@@ -21,7 +40,7 @@ body { background: #494949; color: #FFF; font-family: "Helvetica Neue",Arial,Hel
 #header { padding: 0; margin: 0; text-align: center; border-bottom: 3px solid #666666; }
 #header h1 { font-size: 3em; }
 #header p { line-height: 0;}
-#content { padding: 0; margin: 0; }
+#content { margin: 0; padding: 10px 0 0 10px;}
 #footer { padding: 0; margin: 0; font-size: 0.7em; text-align: center; border-top: 3px solid #666666; }
 
 h1, h2, h3, h4, h5, h6 { margin-top: 0em; margin-bottom: .25em; font-weight: bold; }
