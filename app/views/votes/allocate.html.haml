@@ -1,6 +1,7 @@
-=stylesheet_link_tag '/jquery-ui/css/ui-lightness/jquery-ui-1.7.2.custom.css'
-=javascript_include_tag '/jquery-ui/js/jquery-ui-1.7.2.custom.min.js'
-=javascript_include_tag '/javascripts/linked_slider'
+=content_for :head do
+  =stylesheet_link_tag '/jquery-ui/css/ui-lightness/jquery-ui-1.7.2.custom.css'
+  =javascript_include_tag '/jquery-ui/js/jquery-ui-1.7.2.custom.min.js'
+  =javascript_include_tag '/javascripts/linked_slider'
 
 - form_for @vote do |f|
   %h1

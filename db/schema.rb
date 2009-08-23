@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(:version => 20090823174357) do
     t.datetime "updated_at"
   end
 
-  create_table "renumeration_contributors", :force => true do |t|
+  create_table "remuneration_contributors", :force => true do |t|
     t.string   "name"
     t.integer  "percentage"
     t.boolean  "use"

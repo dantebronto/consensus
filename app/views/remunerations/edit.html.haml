@@ -1,0 +1,16 @@
+-content_for :head do
+  =stylesheet_link_tag '/jquery-ui/css/ui-lightness/jquery-ui-1.7.2.custom.css'
+  =javascript_include_tag '/jquery-ui/js/jquery-ui-1.7.2.custom.min.js'
+  =javascript_include_tag '/javascripts/linked_slider'
+
+%h1 Remuneration Schedule
+
+- form_tag('/foo', :method => :put) do |f|
+  -@allocation.each_with_index do |opt,i|
+    %h3=@remuns[i].name
+    .slider{:id => "slider_" + i.to_s}
+    %input.slider_input{:id => "slider_input_" + i.to_s, :type => "text", :value => @allocation[i], :size => 3, :name => "options[#{@remuns[i].id}]"}
+    %div{:style => "clear:both; padding-top:10px"}
+
+  .field
+    =submit_tag "update"
