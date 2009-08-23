@@ -5,9 +5,9 @@
 
 %h1 Remuneration Schedule
 
-- form_tag('/foo', :method => :put) do |f|
+- form_tag(update_remuneration_schedule_path, :method => :put) do |f|
   -@allocation.each_with_index do |opt,i|
-    %h3=@remuns[i].name
+    %h3=link_to( @remuns[i].name, remuneration_path(@remuns[i].name) )
     .slider{:id => "slider_" + i.to_s}
     %input.slider_input{:id => "slider_input_" + i.to_s, :type => "text", :value => @allocation[i], :size => 3, :name => "options[#{@remuns[i].id}]"}
     %div{:style => "clear:both; padding-top:10px"}

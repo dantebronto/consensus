@@ -6,6 +6,7 @@ ActionController::Routing::Routes.draw do |map|
   map.logout '/logout', :controller => 'sessions', :action => 'destroy'
   map.about '/about', :controller => 'welcome', :action => 'about' 
   map.remuneration_schedule '/remuneration_schedule', :controller => 'remunerations', :action => 'edit'
-  map.remuneration_schedule '/remuneration_schedule', :controller => 'remunerations', :action => 'update', :method => :put
+  map.update_remuneration_schedule '/update_remuneration_schedule', :controller => 'remunerations', :action => 'update', :method => :put
+  map.remuneration '/remuneration/:name', :controller => 'remunerations', :action => 'show'
   map.root :controller => 'welcome'
 end
