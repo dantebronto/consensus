@@ -6,7 +6,7 @@ class VotesController < ApplicationController
   
   def allocate
     @vote = Vote.find_by_id(params[:id])
-    @allocation = @vote.round_robin
+    @allocation = Vote.round_robin(@vote.options.count)
   end
   
   def index

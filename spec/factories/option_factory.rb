@@ -1,3 +1,7 @@
+Factory.define :option do |u|
+  u.name 'replace me'
+end
+
 Factory.define :alice_opt, :class => :option do |u|
   u.name 'alice'
 end

@@ -59,13 +59,12 @@ class Vote < ActiveRecord::Base
     tally_count / option_count
   end
 
-  def round_robin
-    opts = options.count
-    ara = Array.new(opts, 0)
+  def self.round_robin(num_opts)
+    ara = Array.new(num_opts, 0)
     j=0
     100.times do |i|
       ara[j] += 1
-      if(j == opts - 1)
+      if(j == num_opts - 1)
         j = 0
       else
         j += 1

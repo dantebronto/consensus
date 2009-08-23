@@ -5,7 +5,7 @@ Feature: Basic Voting Flows
   
   Scenario: Vote create
     Given I am logged in as a user
-    And I follow "Active votes"
+    And I follow "votes"
     Then I should see "Current Votes"
     
     And I follow "New vote"
@@ -17,7 +17,7 @@ Feature: Basic Voting Flows
     
   Scenario: Vote create fail
     Given I am logged in as a user
-    And I follow "Active votes"
+    And I follow "votes"
     Then I should see "Current Votes"
 
     And I follow "New vote"
@@ -30,5 +30,5 @@ Feature: Basic Voting Flows
   Scenario: Casting, Single-Option
     Given I am logged in as a user
     And a vote exists with three options
-    And I route to the edit_vote_path(Vote.first)
+    And I route to the cast_vote_path(Vote.first)
     Then I should see "Options"

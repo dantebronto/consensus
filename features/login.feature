@@ -24,7 +24,7 @@ Feature: User login/logout
   Scenario: User logout
     Given I am logged in as a user
     And I go to the homepage
-    Then I should see "Logout"
+    Then I should see "logout"
     When I follow "logout"
     Then I should see "You have been logged out"
-    And I should see "Login"
+    And I should see "login"
