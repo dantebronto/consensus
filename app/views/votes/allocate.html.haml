@@ -3,13 +3,13 @@
 =javascript_include_tag '/javascripts/linked_slider'
 
 - form_for @vote do |f|
-
   %h1
     =@vote.name
     -@allocation.each_with_index do |opt,i|
       %h3=@vote.options[i].name
       .slider{:id => "slider_" + i.to_s}
       %input.slider_input{:id => "slider_input_" + i.to_s, :type => "text", :value => @allocation[i], :size => 3, :name => "options[#{@vote.options[i].id}]"}
-
+      %div{:style => "clear:both; padding-top:10px"}
+      
   .field
     =f.submit "Cast your vote"

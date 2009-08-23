@@ -1,15 +1,16 @@
 %h1=@vote.name
 
-.field
+%span
   ="#{@vote.kind.humanize} showing #{@vote.tally_count} #{@vote.tally_count > 1 ? 'votes' : 'vote'}"
-  
-  %table
+
+%table
+  %tr
+    %th Rank
+    %th Option
+    %th Score
+  -@vote.ordered_options.each_with_index do |opt,i|
     %tr
-      %th Rank
-      %th Option
-      %th Score
-    -@vote.ordered_options.each_with_index do |opt,i|
-      %tr
-        %td= "#{i+1})"
-        %td=opt.name
-        %td=opt.condorcet_score
+      %td= "#{i+1})"
+      %td=opt.name
+      %td=opt.condorcet_score
+      

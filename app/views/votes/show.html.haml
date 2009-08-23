@@ -5,7 +5,17 @@
   <script type="text/javascript">
     function drawGraph(){
       var g = new Bluff.Pie('pie-chart', 800);
-      g.theme_keynote();
+
+      g.set_theme({
+        colors: ['#666', '#597298', '#333', '#AFD7F5', '#999', 'black', '#a21764', 'white', '#3a5b87', '#8ab438', 
+                 'green','pink', 'yellow', 'purple', 'plum', 'lime', 'gold', 'crimson', 'azure', 'tomato'],
+        marker_color: '#aea9a9',
+        font_color: 'white',
+        background_colors: ['#494949', '#494949']
+      });
+      
+      g.set_font('"Helvetica Neue",Arial,Helvetica,sans-serif');
+
       g.title = 
 ="'#{truncate(@vote.name, :length => 40)}';"
       
@@ -21,10 +31,12 @@
     });
   </script>
 
-%h1=@vote.name
-
 .field
   ="#{@vote.kind.humanize} vote"
+    
+  -if @vote.tallies.count > 0  
+    .chart_wrapper  
+      %canvas#pie-chart
   
   %table
     %tr
@@ -36,8 +48,3 @@
         %td=opt.name
         %td=opt.tallies.count
         %td=@vote.percentage(opt)
-  
-  -if @vote.tallies.count > 0  
-    .chart_wrapper  
-      %canvas#pie-chart
-  
