@@ -1,0 +1,33 @@
+Remuneration:
+==============
+
+has_many :payments
+has_many :users, :through => :payments
+
+tenure
+peer_review
+hours
+
+worker_misc
+org_misc
+
+worker_capital
+org_capital
+
+Payment:
+=========
+
+belongs_to :user
+belongs_to :remuneration
+
+all_integers: 
+
+user_id
+remunertaion_id
+
+tenure
+peer_review
+hours
+worker_misc
+worker_capital
+
