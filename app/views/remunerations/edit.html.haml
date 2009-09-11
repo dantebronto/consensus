@@ -1,11 +1,17 @@
+-content_for :head do
+  =stylesheet_link_tag '/jquery-ui/css/ui-lightness/jquery-ui-1.7.2.custom.css'
+  =javascript_include_tag '/jquery-ui/js/jquery-ui-1.7.2.custom.min.js'
+  =javascript_include_tag '/javascripts/linked_slider'
+  
 %h1
   Editing remuneration
 -form_for(@remuneration) do |f|
   =f.error_messages
+  
   %p
     =f.label :tenure
-    %br
-    =f.text_field :tenure
+    .slider{:id => "slider_0"}
+    %input.slider_input{:id => "slider_input_0", :type => "text", :value => f.object.tenure, :size => 3, :name => "remuneration[tenure]"}
   %p
     =f.label :peer_review
     %br

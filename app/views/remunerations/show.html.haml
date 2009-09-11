@@ -1,44 +1,44 @@
 %p
   %b
     Tenure:
-  =h @remuneration.tenure 
+  =h "#{@remuneration.tenure.to_i}%"
 %p
   %b
     Peer review:
-  =h @remuneration.peer_review 
+  =h "#{@remuneration.peer_review.to_i}%"
 %p
   %b
     Hours:
-  =h @remuneration.hours 
+  =h "#{@remuneration.hours.to_i}%"
 %p
   %b
     Worker misc:
-  =h @remuneration.worker_misc 
+  =h "#{@remuneration.worker_misc.to_i}%"
 %p
   %b
     Org misc:
-  =h @remuneration.org_misc 
+  =h "#{@remuneration.org_misc.to_i}%"
 %p
   %b
     Worker capital:
-  =h @remuneration.worker_capital 
+  =h "#{@remuneration.worker_capital.to_i}%"
 %p
   %b
     Org capital:
-  =h @remuneration.org_capital 
+  =h "#{@remuneration.org_capital.to_i}%"
 %p
   %b
     Start date:
-  =h @remuneration.start_date 
+  =h @remuneration.start_date
 %p
   %b
     End date:
-  =h @remuneration.end_date 
+  =h @remuneration.end_date
 %p
   %b
     Total profits:
-  =h @remuneration.total_profits 
+  =h "$#{@remuneration.total_profits.to_i}"
 
 =link_to 'Edit', edit_remuneration_path(@remuneration)
 |
-=link_to 'Back', remunerations_path 
+=link_to 'Back', remunerations_path

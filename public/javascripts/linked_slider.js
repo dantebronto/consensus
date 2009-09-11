@@ -20,6 +20,7 @@
     };
     
     var raise_others = function(diff, elem, cur_vals){
+      if(num_opts <= 1) { return cur_vals; }
       var i=0;
       while(i < diff){
         for(var j=0; j < num_opts - 1; j++){
@@ -34,6 +35,7 @@
     };
     
     var lower_others = function(diff, elem, cur_vals){
+      if(num_opts <= 1) { return cur_vals; }
       var i=0;
       while(i < diff){
         for(var j=0; j < num_opts - 1; j++){
