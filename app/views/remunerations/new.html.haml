@@ -7,34 +7,42 @@
   New remuneration
 -form_for(@remuneration) do |f|
   =f.error_messages
-  %p
-    =f.label :tenure
-    %br
-    =f.text_field :tenure 
-  %p
-    =f.label :peer_review 
-    %br
-    =f.text_field :peer_review 
-  %p
-    =f.label :hours 
-    %br
-    =f.text_field :hours 
-  %p
-    =f.label :worker_misc 
-    %br
-    =f.text_field :worker_misc 
-  %p
-    =f.label :org_misc 
-    %br
-    =f.text_field :org_misc 
-  %p
-    =f.label :worker_capital 
-    %br
-    =f.text_field :worker_capital 
-  %p
-    =f.label :org_capital 
-    %br
-    =f.text_field :org_capital 
+  
+  %h3 tenure
+  .slider{:id => "slider_0"}
+  %input.slider_input{:id => "slider_input_0", :type => "text", :value => @round_robin[0], :size => 3, :name => "remuneration[tenure]"}
+  %div{:style => "clear:both; padding-top:10px"}
+    
+  %h3 peer review
+  .slider{:id => "slider_1"}
+  %input.slider_input{:id => "slider_input_1", :type => "text", :value => @round_robin[1], :size => 3, :name => "remuneration[peer_review]"}
+  %div{:style => "clear:both; padding-top:10px"}
+    
+  %h3 hours worked
+  .slider{:id => "slider_2"}
+  %input.slider_input{:id => "slider_input_2", :type => "text", :value => @round_robin[2], :size => 3, :name => "remuneration[hours]"}
+  %div{:style => "clear:both; padding-top:10px"}
+  
+  %h3 worker misc
+  .slider{:id => "slider_3"}
+  %input.slider_input{:id => "slider_input_3", :type => "text", :value => @round_robin[3], :size => 3, :name => "remuneration[worker_misc]"}
+  %div{:style => "clear:both; padding-top:10px"}
+  
+  %h3 org misc
+  .slider{:id => "slider_4"}
+  %input.slider_input{:id => "slider_input_4", :type => "text", :value => @round_robin[4], :size => 3, :name => "remuneration[org_misc]"}
+  %div{:style => "clear:both; padding-top:10px"}
+  
+  %h3 worker capital
+  .slider{:id => "slider_5"}
+  %input.slider_input{:id => "slider_input_5", :type => "text", :value => @round_robin[5], :size => 3, :name => "remuneration[worker_capital]"}
+  %div{:style => "clear:both; padding-top:10px"}
+
+  %h3 org capital
+  .slider{:id => "slider_6"}
+  %input.slider_input{:id => "slider_input_6", :type => "text", :value => @round_robin[6], :size => 3, :name => "remuneration[org_capital]"}
+  %div{:style => "clear:both; padding-top:10px"}
+  
   %p
     =f.label :start_date 
     %br

@@ -25,6 +25,7 @@ class RemunerationsController < ApplicationController
   # GET /remunerations/new.xml
   def new
     @remuneration = Remuneration.new
+    @round_robin = Vote.round_robin(7)
 
     respond_to do |format|
       format.html # new.html.erb
