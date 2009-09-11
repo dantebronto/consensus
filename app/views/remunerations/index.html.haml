@@ -1,0 +1,18 @@
+%h1
+  Listing remunerations
+%table
+  %tr
+    %th Start date
+    %th End date
+    %th Total profits
+    %th{:colspan => 3}
+  -@remunerations.each do |remuneration|
+    %tr
+      %td=h remuneration.start_date
+      %td=h remuneration.end_date
+      %td=h remuneration.total_profits
+      %td=link_to 'Show', remuneration
+      %td=link_to 'Edit', edit_remuneration_path(remuneration)
+      %td=link_to 'Destroy', remuneration, :confirm => 'Are you sure?', :method => :delete
+%br
+  =link_to 'New remuneration', new_remuneration_path

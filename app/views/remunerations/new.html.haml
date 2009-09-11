@@ -1,0 +1,53 @@
+-content_for :head do
+  =stylesheet_link_tag '/jquery-ui/css/ui-lightness/jquery-ui-1.7.2.custom.css'
+  =javascript_include_tag '/jquery-ui/js/jquery-ui-1.7.2.custom.min.js'
+  =javascript_include_tag '/javascripts/linked_slider'
+  
+%h1
+  New remuneration
+-form_for(@remuneration) do |f|
+  =f.error_messages
+  %p
+    =f.label :tenure
+    %br
+    =f.text_field :tenure 
+  %p
+    =f.label :peer_review 
+    %br
+    =f.text_field :peer_review 
+  %p
+    =f.label :hours 
+    %br
+    =f.text_field :hours 
+  %p
+    =f.label :worker_misc 
+    %br
+    =f.text_field :worker_misc 
+  %p
+    =f.label :org_misc 
+    %br
+    =f.text_field :org_misc 
+  %p
+    =f.label :worker_capital 
+    %br
+    =f.text_field :worker_capital 
+  %p
+    =f.label :org_capital 
+    %br
+    =f.text_field :org_capital 
+  %p
+    =f.label :start_date 
+    %br
+    =f.date_select :start_date 
+  %p
+    =f.label :end_date 
+    %br
+    =f.date_select :end_date 
+  %p
+    =f.label :total_profits 
+    %br
+    =f.text_field :total_profits 
+  %p
+    =f.submit 'Create' 
+
+=link_to 'Back', remunerations_path
