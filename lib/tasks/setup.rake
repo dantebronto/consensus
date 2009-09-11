@@ -20,16 +20,6 @@ namespace :setup do
     end
   end
   
-  desc "create the remuneration schedule contributors"
-  task :remunerations => :environment do
-     puts 'Setting up remuneration schedule...'
-     for remun in ['tenure', 'peer review', 'capital contribution', 
-                   'time worked', 'capital reinvestment', 'other']
-       RemunerationContributor.find_or_create_by_name(:name => remun, :use => true)
-     end
-     puts 'Done'
-  end
-  
   desc "setup the admin user and renumeration schedule"
-  task :all => [:admin, :remunerations]
+  task :all => [:admin]
 end
