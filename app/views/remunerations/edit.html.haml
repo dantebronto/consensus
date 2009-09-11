@@ -8,40 +8,12 @@
 -form_for(@remuneration) do |f|
   =f.error_messages
   
-  %h3 tenure
-  .slider{:id => "slider_0"}
-  %input.slider_input{:id => "slider_input_0", :type => "text", :value => f.object.tenure, :size => 3, :name => "remuneration[tenure]"}
-  %div{:style => "clear:both; padding-top:10px"}
-    
-  %h3 peer review
-  .slider{:id => "slider_1"}
-  %input.slider_input{:id => "slider_input_1", :type => "text", :value => f.object.peer_review, :size => 3, :name => "remuneration[peer_review]"}
-  %div{:style => "clear:both; padding-top:10px"}
-    
-  %h3 hours worked
-  .slider{:id => "slider_2"}
-  %input.slider_input{:id => "slider_input_2", :type => "text", :value => f.object.hours, :size => 3, :name => "remuneration[hours]"}
-  %div{:style => "clear:both; padding-top:10px"}
-  
-  %h3 worker misc
-  .slider{:id => "slider_3"}
-  %input.slider_input{:id => "slider_input_3", :type => "text", :value => f.object.worker_misc, :size => 3, :name => "remuneration[worker_misc]"}
-  %div{:style => "clear:both; padding-top:10px"}
-  
-  %h3 org misc
-  .slider{:id => "slider_4"}
-  %input.slider_input{:id => "slider_input_4", :type => "text", :value => f.object.org_misc, :size => 3, :name => "remuneration[org_misc]"}
-  %div{:style => "clear:both; padding-top:10px"}
-  
-  %h3 worker capital
-  .slider{:id => "slider_5"}
-  %input.slider_input{:id => "slider_input_5", :type => "text", :value => f.object.worker_capital, :size => 3, :name => "remuneration[worker_capital]"}
-  %div{:style => "clear:both; padding-top:10px"}
-
-  %h3 org capital
-  .slider{:id => "slider_6"}
-  %input.slider_input{:id => "slider_input_6", :type => "text", :value => f.object.org_capital, :size => 3, :name => "remuneration[org_capital]"}
-  %div{:style => "clear:both; padding-top:10px"}
+  -Remuneration::CATEGORIES.each_with_index do |cat, i|
+    -human_cat = cat.gsub('_', '')
+    %h3=human_cat
+    .slider{:id => "slider_#{i}"}
+    %input.slider_input{:id => "slider_input_#{i}", :type => "text", :value => f.object.send(cat), :size => 3, :name => "remuneration[#{cat}]"}
+    %div{:style => "clear:both; padding-top:10px"}
   
   %p
     =f.label :start_date

@@ -1,6 +1,5 @@
 class RemunerationsController < ApplicationController
-  # GET /remunerations
-  # GET /remunerations.xml
+
   def index
     @remunerations = Remuneration.all
 
@@ -10,8 +9,6 @@ class RemunerationsController < ApplicationController
     end
   end
 
-  # GET /remunerations/1
-  # GET /remunerations/1.xml
   def show
     @remuneration = Remuneration.find(params[:id])
 
@@ -21,10 +18,10 @@ class RemunerationsController < ApplicationController
     end
   end
 
-  # GET /remunerations/new
-  # GET /remunerations/new.xml
   def new
     @remuneration = Remuneration.new
+    @remuneration.start_date = Date.today
+    @remuneration.end_date = @remuneration.start_date + 1.week
     @round_robin = Vote.round_robin(7)
 
     respond_to do |format|
@@ -33,13 +30,10 @@ class RemunerationsController < ApplicationController
     end
   end
 
-  # GET /remunerations/1/edit
   def edit
     @remuneration = Remuneration.find(params[:id])
   end
 
-  # POST /remunerations
-  # POST /remunerations.xml
   def create
     @remuneration = Remuneration.new(params[:remuneration])
 
@@ -55,8 +49,6 @@ class RemunerationsController < ApplicationController
     end
   end
 
-  # PUT /remunerations/1
-  # PUT /remunerations/1.xml
   def update
     @remuneration = Remuneration.find(params[:id])
 
@@ -72,8 +64,6 @@ class RemunerationsController < ApplicationController
     end
   end
 
-  # DELETE /remunerations/1
-  # DELETE /remunerations/1.xml
   def destroy
     @remuneration = Remuneration.find(params[:id])
     @remuneration.destroy
