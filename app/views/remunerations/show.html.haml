@@ -11,7 +11,7 @@
         %b=cat.sub('_', ' ')
       %td= "#{@remuneration.send(cat).to_i}%"
       %td= number_to_currency @remuneration.send(cat + '_value')
-  %tr{:style => "border-top:3px #333 solid;"}
+  %tr
     %td
       %b Total
     %td

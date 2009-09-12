@@ -1,5 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :remunerations
+  map.resources :remunerations, :member => { :tenure => :get }
   map.resources :users, :except => [:show]
   map.resources :sessions, :only => [:new, :create, :destroy]
   map.resources :votes, :except => [:edit], :member => { :prioritize => :get, :allocate => :get, :cast => :get }

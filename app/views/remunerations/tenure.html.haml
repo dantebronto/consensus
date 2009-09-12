@@ -1,22 +1,19 @@
 %h3="from #{@remuneration.start_date} to #{@remuneration.end_date}"
 
-%table
-  %tr
-    %th Category
-    %th Percent
-    %th Amount
-  -Remuneration::CATEGORIES.each do |cat|
+%form{ :action => "/foo" }
+  %table
     %tr
-      %td
-        %b=cat.sub('_', ' ')
-      %td= "#{@remuneration.send(cat).to_i}%"
-      %td= number_to_currency @remuneration.send(cat + '_value')
-  %tr{:style => "border-top:3px #333 solid;"}
-    %td
-      %b Total
-    %td
-    %td= number_to_currency @remuneration.total_profits
+      %th Eligible?
+      %th User
+      %th Tenure
+      %th Percent
+      %th Payment
+    -@users.each do |user|
+      %tr
+        %td= check_box_tag("foo", "bar", :checked => true)
+        %td= user.login
+        %td= "#{(@remuneration.end_date - user.created_at.to_date).to_i} days"
+        %td total dates
+        %td some amount
 
-=link_to 'Edit', edit_remuneration_path(@remuneration)
-|
 =link_to 'Back', remunerations_path
