@@ -1,43 +1,21 @@
-%p
-  %b
-    Tenure:
-  =h "#{@remuneration.tenure.to_i}%"
-%p
-  %b
-    Peer review:
-  =h "#{@remuneration.peer_review.to_i}%"
-%p
-  %b
-    Hours:
-  =h "#{@remuneration.hours.to_i}%"
-%p
-  %b
-    Worker misc:
-  =h "#{@remuneration.worker_misc.to_i}%"
-%p
-  %b
-    Org misc:
-  =h "#{@remuneration.org_misc.to_i}%"
-%p
-  %b
-    Worker capital:
-  =h "#{@remuneration.worker_capital.to_i}%"
-%p
-  %b
-    Org capital:
-  =h "#{@remuneration.org_capital.to_i}%"
-%p
-  %b
-    Start date:
-  =h @remuneration.start_date
-%p
-  %b
-    End date:
-  =h @remuneration.end_date
-%p
-  %b
-    Total profits:
-  =h "$#{@remuneration.total_profits.to_i}"
+%h3="Period from #{@remuneration.start_date} to #{@remuneration.end_date}"
+
+%table
+  %tr
+    %th Category
+    %th Percent
+    %th Amount
+  -Remuneration::CATEGORIES.each do |cat|
+    %tr
+      %td
+        %b=cat.sub('_', ' ')
+      %td= "#{@remuneration.send(cat).to_i}%"
+      %td="$#{@remuneration.send(cat + '_value').to_i}"
+  %tr
+    %td
+      %b Total
+    %td
+    %td="$#{@remuneration.total_profits.to_i}" 
 
 =link_to 'Edit', edit_remuneration_path(@remuneration)
 |

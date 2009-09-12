@@ -39,6 +39,13 @@
                 view active
               %br
               votes
+          %li
+            %a{ :href => "/remunerations" }
+              %span
+                pay out
+              %br
+              remunerate
+
           - if current_user.admin?
             %li
               %a{ :href => "/users" }
