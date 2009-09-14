@@ -1,8 +1,12 @@
 class RemunerationsController < ApplicationController
 
-  def tenure
+  def categories
     @remuneration = Remuneration.find_by_id(params[:id])
-    @users = User.all
+    case params[:category]
+    when 'tenure' then render :action => 'tenure'
+    when 'tenure' then render :action => 'tenure'
+    else render :action => 'edit'
+    end
   end
 
   def index

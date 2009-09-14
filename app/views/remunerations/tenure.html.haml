@@ -8,12 +8,12 @@
       %th Tenure
       %th Percent
       %th Payment
-    -@users.each do |user|
+    -@remuneration.payments.each do |payment|
       %tr
         %td= check_box_tag("foo", "bar", :checked => true)
-        %td= user.login
-        %td= "#{(@remuneration.end_date - user.created_at.to_date).to_i} days"
-        %td total dates
-        %td some amount
+        %td= payment.user.login
+        %td= "#{payment.user.tenure} days"
+        %td= two_decimals payment.percentage_of_total_tenure
+        %td= number_to_currency(payment.tenure)
 
 =link_to 'Back', remunerations_path

@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   has_many :votes, :through => :tallies
   has_many :tallies
+  has_many :payments
   
   attr_accessor :password, :password_confirmation
 
@@ -31,6 +32,14 @@ class User < ActiveRecord::Base
   def guest?
     self.permission_level == 0
   end
+
+  def tenure
+    (Date.today - self.created_at.to_date).to_i
+  end
+  
+  def self.total_tenure
+    @tt ||= self.all.sum {|u| u.tenure }
+  end
   
   protected
   
@@ -39,7 +48,6 @@ class User < ActiveRecord::Base
   end
   
   def self.random_string(len)
-    #generate a random password consisting of strings and digits
     chars = ("a".."z").to_a + ("A".."Z").to_a + ("0".."9").to_a
     newpass = ""
     1.upto(len) { |i| newpass << chars[rand(chars.size-1)] }

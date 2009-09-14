@@ -1,4 +1,8 @@
 module ApplicationHelper
+  def two_decimals(percent)
+    "%.2f" % percent
+  end
+  
   def show_flashes
     retval = ""
     for name in [:notice, :warning, :message, :error]
