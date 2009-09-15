@@ -9,6 +9,8 @@ class RemunerationsController < ApplicationController
       render :action => 'hours'
     when 'worker_capital'
       render :action => 'worker_capital'
+    when 'peer_review'
+      render :action => 'peer_review'
     when 'worker_misc'
       @remuneration.set_worker_misc_values
       render :action => 'worker_misc'

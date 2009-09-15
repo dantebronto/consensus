@@ -58,4 +58,8 @@ class Remuneration < ActiveRecord::Base
     self.payments.each_with_index {|p,i| p.worker_misc = vals[i] }
   end
   
+  def completed_peer_review_count
+    self.payments.map(&:peer_review).reject {|x| x == 0}.length
+  end
+  
 end
