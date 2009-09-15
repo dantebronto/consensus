@@ -1,0 +1,26 @@
+=content_for :head do
+  =stylesheet_link_tag '/jquery-ui/css/ui-lightness/jquery-ui-1.7.2.custom.css'
+  =javascript_include_tag '/jquery-ui/js/jquery-ui-1.7.2.custom.min.js'
+  =javascript_include_tag '/javascripts/linked_slider'
+
+%h3="from #{@remuneration.start_date} to #{@remuneration.end_date}"
+
+-form_for(@remuneration, :method => :put) do |f|
+  %table
+    %tr
+      %th User
+      %th percent
+      %th 
+    -@remuneration.payments.each_with_index do |payment, i|
+      %tr
+        =hidden_field_tag("category", "worker_misc")
+        %td=payment.user.login
+        %td
+          %input.slider_input{:id => "slider_input_" + i.to_s, :type => "text", :value => payment.worker_misc, :size => 3, :name => "user_percentages[#{payment.user.id}]"}
+        %td
+          .slider{:id => "slider_" + i.to_s}
+          
+  =f.submit("Update")
+
+=link_to 'Back', remunerations_path
+

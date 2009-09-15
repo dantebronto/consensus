@@ -3,9 +3,17 @@ class RemunerationsController < ApplicationController
   def categories
     @remuneration = Remuneration.find_by_id(params[:id])
     case params[:category]
-    when 'tenure' then render :action => 'tenure'
-    when 'hours' then render :action => 'hours'
-    else render :action => 'edit'
+    when 'tenure'
+      render :action => 'tenure'
+    when 'hours'
+      render :action => 'hours'
+    when 'worker_capital'
+      render :action => 'worker_capital'
+    when 'worker_misc'
+      @remuneration.set_worker_misc_values
+      render :action => 'worker_misc'
+    else 
+      render :action => 'edit'
     end
   end
 

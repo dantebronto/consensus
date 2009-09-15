@@ -8,7 +8,10 @@
   -Remuneration::CATEGORIES.each do |cat|
     %tr
       %td
-        %b= link_to cat.sub('_', ' '), remuneration_category_path(@remuneration, cat)
+        - if cat.include?("org")
+          %b= cat.sub('_', ' ')
+        - else
+          %b= link_to cat.sub('_', ' '), remuneration_category_path(@remuneration, cat)
       %td= "#{@remuneration.send(cat).to_i}%"
       %td= number_to_currency @remuneration.send(cat + '_value')
   %tr

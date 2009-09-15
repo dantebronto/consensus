@@ -1,0 +1,19 @@
+%h3="from #{@remuneration.start_date} to #{@remuneration.end_date}"
+
+-form_for(@remuneration, :method => :put) do |f|
+  %table
+    %tr
+      %th User
+      %th capital contributed
+      %th Percent
+      %th Payment
+    -@remuneration.payments.each do |payment|
+      %tr
+        =hidden_field_tag("category", "worker_capital")
+        %td=payment.user.login
+        %td=text_field_tag("capital[]", payment.worker_capital || 0, :size => 3)
+        %td=two_decimals payment.percentage_of_total_worker_capital * 100
+        %td=number_to_currency(payment.worker_capital_amount)
+  =f.submit("Update")
+
+=link_to 'Back', remunerations_path
