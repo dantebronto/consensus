@@ -3,17 +3,15 @@
 %form{ :action => "/foo" }
   %table
     %tr
-      %th Eligible?
       %th User
       %th Tenure
       %th Percent
       %th Payment
     -@remuneration.payments.each do |payment|
       %tr
-        %td= check_box_tag("foo", "bar", :checked => true)
         %td= payment.user.login
         %td= "#{payment.user.tenure} days"
-        %td= two_decimals payment.percentage_of_total_tenure
+        %td= two_decimals payment.percentage_of_total_tenure * 100
         %td= number_to_currency(payment.tenure)
 
 =link_to 'Back', remunerations_path

@@ -8,7 +8,7 @@
   =f.error_messages
   
   -Remuneration::CATEGORIES.each_with_index do |cat, i|
-    -human_cat = cat.gsub('_', '')
+    -human_cat = cat.gsub('_', ' ')
     %h3=human_cat
     .slider{:id => "slider_#{i}"}
     %input.slider_input{:id => "slider_input_#{i}", :type => "text", :value => @round_robin[i], :size => 3, :name => "remuneration[#{cat}]"}

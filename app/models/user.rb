@@ -32,7 +32,7 @@ class User < ActiveRecord::Base
   def guest?
     self.permission_level == 0
   end
-
+  
   def tenure
     (Date.today - self.created_at.to_date).to_i
   end

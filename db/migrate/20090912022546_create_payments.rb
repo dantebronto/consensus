@@ -3,7 +3,7 @@ class CreatePayments < ActiveRecord::Migration
     create_table :payments do |t|
       t.integer :tenure
       t.integer :peer_review
-      t.integer :hours
+      t.integer :hours, :default => 0
       t.integer :worker_misc
       t.integer :worker_capital
       t.integer :total_profits

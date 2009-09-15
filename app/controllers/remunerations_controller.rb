@@ -4,7 +4,7 @@ class RemunerationsController < ApplicationController
     @remuneration = Remuneration.find_by_id(params[:id])
     case params[:category]
     when 'tenure' then render :action => 'tenure'
-    when 'tenure' then render :action => 'tenure'
+    when 'hours' then render :action => 'hours'
     else render :action => 'edit'
     end
   end
@@ -39,6 +39,7 @@ class RemunerationsController < ApplicationController
 
   def update
     @remuneration = Remuneration.find(params[:id])
+    @remuneration.handle_category(params)
 
     if @remuneration.update_attributes(params[:remuneration])
       flash[:notice] = 'Remuneration was successfully updated.'

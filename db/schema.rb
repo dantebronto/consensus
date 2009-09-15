@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(:version => 20090912022546) do
   create_table "payments", :force => true do |t|
     t.integer  "tenure"
     t.integer  "peer_review"
-    t.integer  "hours"
+    t.integer  "hours",           :default => 0
     t.integer  "worker_misc"
     t.integer  "worker_capital"
     t.integer  "total_profits"

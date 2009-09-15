@@ -1,0 +1,19 @@
+%h3="from #{@remuneration.start_date} to #{@remuneration.end_date}"
+
+-form_for(@remuneration, :method => :put) do |f|
+  %table
+    %tr
+      %th User
+      %th Hours Worked
+      %th Percent
+      %th Payment
+    -@remuneration.payments.each do |payment|
+      %tr
+        =hidden_field_tag("category", "hours")
+        %td=payment.user.login
+        %td=text_field_tag("hours[]", payment.hours || 0, :size => 3)
+        %td=two_decimals payment.percentage_of_total_hours * 100
+        %td=number_to_currency(payment.hours_amount)
+  =f.submit("Update")
+
+=link_to 'Back', remunerations_path
