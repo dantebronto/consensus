@@ -4,6 +4,7 @@ class Vote < ActiveRecord::Base
   has_many :users, :through => :tallies
   has_many :tallies, :dependent => :destroy
   has_many :options, :dependent => :destroy
+  belongs_to :remuneration
 
   validates_presence_of :name
 
@@ -86,6 +87,16 @@ class Vote < ActiveRecord::Base
       opt.condorcet_score = score
     end
     self.options.sort_by {|x| x.condorcet_score }.reverse
+  end
+  
+  def total_condorcet_points
+    condorcet.values.map(&:abs).sum
+  end
+    # 
+  def weighted_ordered_options
+    oos = ordered_options
+    lowest = oos.last.condorcet_score.abs
+    oos.map {|x| x.condorcet_score += lowest }
   end
 
   def condorcet

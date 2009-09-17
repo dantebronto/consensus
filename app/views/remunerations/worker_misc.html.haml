@@ -10,7 +10,7 @@
     %tr
       %th User
       %th percent
-      %th 
+      %th{:colspan => 2}
     -@remuneration.payments.each_with_index do |payment, i|
       %tr
         =hidden_field_tag("category", "worker_misc")
@@ -19,6 +19,7 @@
           %input.slider_input{:id => "slider_input_" + i.to_s, :type => "text", :value => payment.worker_misc, :size => 3, :name => "user_percentages[#{payment.user.id}]"}
         %td
           .slider{:id => "slider_" + i.to_s}
+        %td=number_to_currency(payment.worker_misc / 100.0 * @remuneration.worker_misc_value)
           
   =f.submit("Update")
 
