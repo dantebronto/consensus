@@ -10,6 +10,7 @@ class RemunerationsController < ApplicationController
     when 'worker_capital'
       render :action => 'worker_capital'
     when 'peer_review'
+      @remuneration.set_peer_review_values
       render :action => 'peer_review'
     when 'worker_misc'
       @remuneration.set_worker_misc_values

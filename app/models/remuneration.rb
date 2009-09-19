@@ -27,9 +27,36 @@ class Remuneration < ActiveRecord::Base
         :tenure => u.tenure / User.total_tenure.to_f * self.tenure_value,
         :user => u
       })
+    end
+    self.payments.each do |p|
       this_vote.options.create({
-        :name => u.login
+        :payment => p,
+        :name => p.user.login
       })
+    end
+  end
+  
+  def set_peer_review_values
+    half_prv = self.peer_review_value / 2
+    user_percent = 1.0 / self.vote.option_count
+    guar_amt = user_percent * half_prv
+     
+    woos = self.vote.weighted_ordered_options_scores
+    woos_total = woos.sum
+    
+    if woos_total == 0
+      fair_percent = 0
+    else
+      fair_percent = 1.0 / woos_total
+    end
+    chunk = fair_percent * half_prv
+    
+    self.vote.ordered_options.each_with_index do |option, i|
+      p = option.payment
+      cur_val = p.peer_review
+      new_val = chunk * woos[i] + guar_amt
+      p.peer_review = new_val
+      p.save if cur_val != new_val
     end
   end
   

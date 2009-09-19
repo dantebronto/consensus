@@ -1,6 +1,7 @@
 class Option < ActiveRecord::Base
   belongs_to :vote
   has_many :tallies
+  belongs_to :payment # for peer reviews
   
   attr_accessor :condorcet_score
   

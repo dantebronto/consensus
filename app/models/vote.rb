@@ -93,7 +93,7 @@ class Vote < ActiveRecord::Base
     condorcet.values.map(&:abs).sum
   end
     # 
-  def weighted_ordered_options
+  def weighted_ordered_options_scores
     oos = ordered_options
     lowest = oos.last.condorcet_score.abs
     oos.map {|x| x.condorcet_score += lowest }

@@ -1,25 +1,21 @@
 %h3="from #{@remuneration.start_date} to #{@remuneration.end_date}"
 
-%table
-  %tr
-    %th rank
-    %th user
-    %th score
-    %th payment
-    
-  -half_prv = @remuneration.peer_review_value / 2
-  -user_percent = 1.0 / @remuneration.vote.option_count
-  -guar_amt = user_percent * half_prv
-  
-  -woo = @remuneration.vote.weighted_ordered_options
-  -woo_total = woo.sum
-  
-  -fair_percent = 1.0 / woo_total
-  -chunk = fair_percent * half_prv
-  
-  -@remuneration.vote.ordered_options.each_with_index do |option, i|
+-if @remuneration.vote.weighted_ordered_options_scores.sum == 0
+  %p 
+    Please
+    =link_to 'vote', cast_vote_path(@remuneration.vote)
+    at least once for this peer review
+-else
+  %table
     %tr
-      %td= "#{i+1})"
-      %td=option.name
-      %td=option.condorcet_score
-      %td=number_to_currency(chunk * woo[i] + guar_amt)
+      %th rank
+      %th user
+      %th score
+      %th payment
+    -@remuneration.vote.ordered_options.each_with_index do |option, i|
+      %tr
+        %td= "#{i+1})"
+        %td=option.name
+        %td=option.condorcet_score
+        %td=number_to_currency(option.payment.peer_review)
+      

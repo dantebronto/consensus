@@ -1,6 +1,7 @@
 class Payment < ActiveRecord::Base
   belongs_to :user
   belongs_to :remuneration
+  has_one :option # for peer reviews
   
   def percentage_of_total_tenure
     self.user.tenure / User.total_tenure.to_f
