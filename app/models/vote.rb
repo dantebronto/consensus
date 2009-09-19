@@ -114,4 +114,8 @@ class Vote < ActiveRecord::Base
     end
     ret_hsh
   end
+  
+  def is_for_peer_review?
+    !self.options.first.payment.blank?
+  end
 end

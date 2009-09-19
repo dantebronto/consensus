@@ -24,7 +24,8 @@ class Remuneration < ActiveRecord::Base
     })
     User.all.each do |u|
       self.payments.create({
-        :tenure => u.tenure / User.total_tenure.to_f * self.tenure_value,
+        :tenure => u.tenure,
+        :hours => 40,
         :user => u
       })
     end

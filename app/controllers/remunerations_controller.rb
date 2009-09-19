@@ -21,7 +21,7 @@ class RemunerationsController < ApplicationController
   end
 
   def index
-    @remunerations = Remuneration.all
+    @remunerations = Remuneration.paginate(:page => params[:page], :order => "created_at DESC")
   end
 
   def show

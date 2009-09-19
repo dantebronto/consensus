@@ -10,7 +10,7 @@ class VotesController < ApplicationController
   end
   
   def index
-    @votes = Vote.all
+    @votes = Vote.paginate(:page => params[:page], :order => "created_at DESC")
   end
   
   def show
@@ -52,7 +52,7 @@ class VotesController < ApplicationController
     
     flash[:notice] = 'Vote was successfully cast.'
     
-    if @vote.options.first.payment # it is a peer review
+    if @vote.is_for_peer_review? # it is a peer review
       redirect_to remuneration_category_path(@vote.options.first.payment.remuneration, "peer_review")
     else
       redirect_to @vote
@@ -61,8 +61,13 @@ class VotesController < ApplicationController
   
   def destroy
     @vote = Vote.find_by_id(params[:id])
-    @vote.destroy
-    flash[:notice] = 'Vote successfully deleted'
+    
+    if @vote.is_for_peer_review?
+      flash[:notice] = "delete the remuneration to delete this vote"
+    else
+      flash[:notice] = 'Vote successfully deleted'
+      @vote.destroy
+    end
     redirect_to votes_path
   end
 end

@@ -11,8 +11,8 @@
   -Remuneration::CATEGORIES.each_with_index do |cat, i|
     -human_cat = cat.gsub('_', ' ')
     %h3=human_cat
-    .slider{:id => "slider_#{i}"}
     %input.slider_input{:id => "slider_input_#{i}", :type => "text", :value => f.object.send(cat), :size => 3, :name => "remuneration[#{cat}]"}
+    .slider{:id => "slider_#{i}"}
     %div{:style => "clear:both; padding-top:10px"}
   
   %p

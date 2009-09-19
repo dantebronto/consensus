@@ -4,7 +4,7 @@ class Payment < ActiveRecord::Base
   has_one :option # for peer reviews
   
   def percentage_of_total_tenure
-    self.user.tenure / User.total_tenure.to_f
+    self.tenure / self.remuneration.payments.map(&:tenure).sum.to_f
   end
   
   def tenure_amount
@@ -48,7 +48,7 @@ class Payment < ActiveRecord::Base
     Remuneration::CATEGORIES.each { |cat| new_val += self.send("#{cat}_amount").to_i }
     self.total_profits= new_val
     self.save if cur_val.to_i != new_val.to_i
-    new_val
+    return new_val
   end
   
 end
