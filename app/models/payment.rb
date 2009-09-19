@@ -8,7 +8,7 @@ class Payment < ActiveRecord::Base
   end
   
   def tenure_amount
-    self.tenure
+    percentage_of_total_tenure * self.remuneration.tenure_value
   end
   
   def peer_review_amount

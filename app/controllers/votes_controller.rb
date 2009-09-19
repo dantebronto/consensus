@@ -53,7 +53,7 @@ class VotesController < ApplicationController
     flash[:notice] = 'Vote was successfully cast.'
     
     if @vote.options.first.payment # it is a peer review
-      redirect_to remuneration_path(@vote.options.first.payment.remuneration)
+      redirect_to remuneration_category_path(@vote.options.first.payment.remuneration, "peer_review")
     else
       redirect_to @vote
     end

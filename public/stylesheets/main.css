@@ -1,6 +1,6 @@
 /* allocate */
-.slider { float:right; width:730px; margin-top:4px; }
-.slider_input { float:right; margin-right:14px; width:27px; }
+.slider { float:left; width:570px; margin-top:4px; }
+.slider_input { float:left; margin-right:14px; width:27px; }
 /* end allocate */
 
 /* prioritize */
@@ -26,7 +26,7 @@ td { padding:2px 5px; }
 .chart_wrapper { width:800px; margin-left:auto; margin-right:auto; }
 
 /* flashes */
-.flash { background:#333333 none repeat scroll 0 0; margin-left:auto; margin-right:auto; width:40%; -moz-border-radius: 8px; -webkit-border-radius: 8px; border-radius: 8px; }
+.flash { background:#333333 none repeat scroll 0 0; margin-left:auto; margin-right:auto; width:400px; -moz-border-radius: 8px; -webkit-border-radius: 8px; border-radius: 8px; }
 .flash h3 { display:inline; padding-right:10px; }
 .flash_error { border: thin solid red; }
 .flash_notice { border: thin solid #AFD7F5;}

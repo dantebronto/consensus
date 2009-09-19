@@ -1,16 +1,23 @@
+%h1 tenure
 %h3="from #{@remuneration.start_date} to #{@remuneration.end_date}"
 
-%table
-  %tr
-    %th User
-    %th Tenure
-    %th Percent
-    %th Payment
-  -@remuneration.payments.each do |payment|
+-form_for(@remuneration, :method => :put) do |f|
+
+  %table
     %tr
-      %td= payment.user.login
-      %td= "#{payment.user.tenure} days"
-      %td= two_decimals payment.percentage_of_total_tenure * 100
-      %td= number_to_currency(payment.tenure)
+      %th User
+      %th Tenure
+      %th Percent
+      %th Payment
+    -@remuneration.payments.each do |payment|
+      %tr
+        =hidden_field_tag("category", "tenure")
+        %td= payment.user.login
+        %td
+          =text_field_tag("tenure[]", payment.tenure || 0, :size => 3)
+          days
+        %td= two_decimals payment.percentage_of_total_tenure * 100
+        %td= number_to_currency(payment.tenure_amount)
+  =f.submit("Update")
 
 =link_to 'Back', remuneration_path(@remuneration)

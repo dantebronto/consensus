@@ -17,23 +17,24 @@ class Remuneration < ActiveRecord::Base
   end
   
   def after_create
-    this_vote = Vote.create({
+    this_vote = Vote.new({
       :name => "peer review for #{self.start_date} to #{self.end_date}",
       :kind => "prioritization", 
       :remuneration => self
-    })  
+    })
     User.all.each do |u|
-      self.payments.create({ 
+      self.payments.create({
         :tenure => u.tenure / User.total_tenure.to_f * self.tenure_value,
         :user => u
       })
     end
     self.payments.each do |p|
-      this_vote.options.create({
+      this_vote.options.build({
         :payment => p,
         :name => p.user.login
       })
     end
+    this_vote.save
   end
   
   def set_peer_review_values
@@ -63,10 +64,18 @@ class Remuneration < ActiveRecord::Base
   def handle_category(params)
     return unless params[:category]
     case params[:category]
+    when "tenure"         then handle_tenure(params)
     when "worker_capital" then handle_worker_capital(params)
     when "worker_misc"    then handle_worker_misc(params)
     when "hours"          then handle_hours(params)
     end
+  end
+  
+  def handle_tenure(params)
+    ten = params[:tenure] || []
+    self.payments.each_with_index do |pay,i| 
+      pay.update_attribute(:tenure, ten[i])
+    end unless ten.blank?
   end
   
   def handle_worker_misc(params)
