@@ -8,6 +8,8 @@
   	$("#sortable").disableSelection();
   });
 
+%p click and drag the options below. arrange them in order of preference (most at the top, least at the bottom)
+
 - form_for @vote do |f|
   %ul#sortable
     - @vote.options.each do |opt|
@@ -16,3 +18,5 @@
         %input{:type => "hidden", :value => opt.id, :size => 3, :name => "options[]"}
         
   =f.submit "Cast your vote"
+  
+%p= link_to 'back', votes_path

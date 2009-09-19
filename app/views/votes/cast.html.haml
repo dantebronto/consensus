@@ -16,3 +16,5 @@
               %input{ :id => opt.id, :name => "options[#{opt.id}]", :type => "checkbox" }
   .field
     =f.submit 'Cast your vote'
+    
+%p= link_to 'back', votes_path
