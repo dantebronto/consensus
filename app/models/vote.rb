@@ -12,6 +12,12 @@ class Vote < ActiveRecord::Base
   
   VOTE_TYPES = ["single_option", "multi_option", "prioritization", "allocation"]
   
+  def validate
+    if self.options.length <= 1
+      self.errors.add_to_base("You must have at least two topics on which to vote")
+    end
+  end
+  
   def handle_cast(params, current_user)
     case self.kind.to_sym
     when :single_option

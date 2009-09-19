@@ -54,7 +54,11 @@ class RemunerationsController < ApplicationController
 
     if @remuneration.update_attributes(params[:remuneration])
       flash[:notice] = 'Remuneration was successfully updated.'
-      redirect_to(@remuneration)
+      if params[:category]
+        render :action => params[:category]
+      else
+        redirect_to(@remuneration)
+      end
     else
       render :action => "edit"
     end

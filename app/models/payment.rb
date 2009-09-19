@@ -32,7 +32,7 @@ class Payment < ActiveRecord::Base
   end
   
   def worker_capital_amount
-    percentage_of_total_worker_capital * self.remuneration.worker_capital_value
+    (percentage_of_total_worker_capital * self.remuneration.worker_capital_value).to_i
   end
   
   def worker_misc_amount
@@ -45,9 +45,9 @@ class Payment < ActiveRecord::Base
   def total_profits
     cur_val = self[:total_profits]
     new_val = 0
-    Remuneration::CATEGORIES.each { |cat| new_val += self.send("#{cat}_amount").to_f }
+    Remuneration::CATEGORIES.each { |cat| new_val += self.send("#{cat}_amount").to_i }
     self.total_profits= new_val
-    self.save if cur_val.to_f != new_val.to_f
+    self.save if cur_val.to_i != new_val.to_i
     new_val
   end
   

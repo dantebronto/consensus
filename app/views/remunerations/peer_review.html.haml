@@ -18,4 +18,7 @@
         %td=option.name
         %td=option.condorcet_score
         %td=number_to_currency(option.payment.peer_review)
-      
+
+=link_to 'vote', cast_vote_path(@remuneration.vote)
+|
+=link_to 'Back', remuneration_path(@remuneration)

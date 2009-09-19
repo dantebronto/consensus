@@ -30,7 +30,7 @@ class VotesController < ApplicationController
     @vote = Vote.find_by_id(params[:id])
     case @vote.kind.to_sym
     when :allocation then redirect_to :action => 'allocate'
-    when :prioritization  then redirect_to :action => 'prioritize'
+    when :prioritization then redirect_to :action => 'prioritize'
     end
   end
   
@@ -51,7 +51,12 @@ class VotesController < ApplicationController
     @vote.handle_cast(params, current_user)
     
     flash[:notice] = 'Vote was successfully cast.'
-    redirect_to @vote
+    
+    if @vote.options.first.payment # it is a peer review
+      redirect_to remuneration_path(@vote.options.first.payment.remuneration)
+    else
+      redirect_to @vote
+    end
   end
   
   def destroy
