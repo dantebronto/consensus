@@ -11,6 +11,10 @@ class Payment < ActiveRecord::Base
     self.tenure
   end
   
+  def peer_review_amount
+    self.peer_review
+  end
+  
   def percentage_of_total_hours
     total = self.remuneration.payments.map(&:hours).sum
     return 0 if total == 0
@@ -29,6 +33,22 @@ class Payment < ActiveRecord::Base
   
   def worker_capital_amount
     percentage_of_total_worker_capital * self.remuneration.worker_capital_value
+  end
+  
+  def worker_misc_amount
+    0.01 * self.worker_misc * self.remuneration.worker_misc_value
+  end
+  
+  def org_misc_amount; 0; end
+  def org_capital_amount; 0; end
+
+  def total_profits
+    cur_val = self[:total_profits]
+    new_val = 0
+    Remuneration::CATEGORIES.each { |cat| new_val += self.send("#{cat}_amount").to_f }
+    self.total_profits= new_val
+    self.save if cur_val.to_f != new_val.to_f
+    new_val
   end
   
 end

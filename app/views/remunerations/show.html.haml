@@ -20,6 +20,31 @@
     %td
     %td= number_to_currency @remuneration.total_profits
 
+%table
+  -@remuneration.payments.each do |payment|
+    %tr
+      %th= payment.user.login
+      %th
+    %tr
+      %td Tenure
+      %td= number_to_currency payment.tenure_amount
+    %tr
+      %td Peer review
+      %td= number_to_currency payment.peer_review_amount
+    %tr
+      %td hours
+      %td= number_to_currency payment.hours_amount
+    %tr
+      %td worker misc
+      %td= number_to_currency payment.worker_misc_amount
+    %tr
+      %td worker capital
+      %td= number_to_currency payment.worker_capital_amount
+    %tr
+      %td
+        %b Total
+      %td= number_to_currency payment.total_profits
+
 =link_to 'Edit', edit_remuneration_path(@remuneration)
 |
 =link_to 'Back', remunerations_path

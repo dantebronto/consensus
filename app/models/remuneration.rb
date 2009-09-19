@@ -41,7 +41,7 @@ class Remuneration < ActiveRecord::Base
     user_percent = 1.0 / self.vote.option_count
     guar_amt = user_percent * half_prv
      
-    woos = self.vote.weighted_ordered_options_scores
+    woos = self.vote.weighted_ordered_option_scores
     woos_total = woos.sum
     
     if woos_total == 0
