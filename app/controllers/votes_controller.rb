@@ -1,5 +1,8 @@
 class VotesController < ApplicationController
   
+  before_filter :load_vote, :except => [:index, :show, :new, :create]
+  before_filter :boot_if_voted, :only => [:cast, :update]
+  
   def prioritize
     @vote = Vote.find_by_id(params[:id])
   end
@@ -69,5 +72,21 @@ class VotesController < ApplicationController
       @vote.destroy
     end
     redirect_to votes_path
+  end
+  
+  protected
+  
+  def load_vote
+    @vote ||= Vote.find_by_id(params[:id])
+  end
+  
+  def boot_if_voted
+    if @vote.already_cast?(current_user)
+      flash[:notice] = 'You already cast a vote'
+      redirect_to votes_path
+      return false
+    else
+      return true
+    end
   end
 end

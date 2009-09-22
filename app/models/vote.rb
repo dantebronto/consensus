@@ -119,5 +119,9 @@ class Vote < ActiveRecord::Base
   def is_for_peer_review?
     !self.options.first.payment_id.blank?
   end
-
+  
+  def already_cast?(user)
+    self.tallies.map(&:user_id).include?(user.id)
+  end
+    
 end

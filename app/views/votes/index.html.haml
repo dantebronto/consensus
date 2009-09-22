@@ -11,7 +11,9 @@
       %tr
         %td= truncate(vote.name, :length => 75)
         %td= vote.kind.humanize
-        %td= link_to 'Vote', cast_vote_path(vote)
+        %td
+          -unless vote.already_cast?(current_user)
+            = link_to 'Vote', cast_vote_path(vote)
         %td= link_to 'Show', vote
         %td
           -unless vote.is_for_peer_review?
