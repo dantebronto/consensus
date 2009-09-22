@@ -1,10 +1,10 @@
 %h1 peer review
 %h3="from #{@remuneration.start_date} to #{@remuneration.end_date}"
 
--if @remuneration.vote.weighted_ordered_option_scores.sum == 0
+-if @vote.weighted_ordered_option_scores.sum == 0
   %p 
     Please
-    =link_to 'vote', cast_vote_path(@remuneration.vote)
+    =link_to 'vote', cast_vote_path(@vote)
     at least once for this peer review
 -else
   %table
@@ -13,13 +13,13 @@
       %th user
       %th score
       %th payment
-    -@remuneration.vote.ordered_options.each_with_index do |option, i|
+    -@vote.ordered_options.each_with_index do |option, i|
       %tr
         %td= "#{i+1})"
         %td=option.name
         %td=option.condorcet_score
         %td=number_to_currency(option.payment.peer_review)
 
-=link_to 'vote', cast_vote_path(@remuneration.vote)
+=link_to 'vote', cast_vote_path(@vote)
 |
 =link_to 'Back', remuneration_path(@remuneration)

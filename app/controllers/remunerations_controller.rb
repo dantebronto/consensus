@@ -1,7 +1,7 @@
 class RemunerationsController < ApplicationController
 
   def categories
-    @remuneration = Remuneration.find_by_id(params[:id])
+    @remuneration = Remuneration.find_by_id(params[:id]) #, :include => :payments)
     case params[:category]
     when 'tenure'
       render :action => 'tenure'
@@ -10,6 +10,7 @@ class RemunerationsController < ApplicationController
     when 'worker_capital'
       render :action => 'worker_capital'
     when 'peer_review'
+      @vote = @remuneration.vote(:include => [:tallies, { :options => :payment }])
       @remuneration.set_peer_review_values
       render :action => 'peer_review'
     when 'worker_misc'

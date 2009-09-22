@@ -109,8 +109,8 @@ class Remuneration < ActiveRecord::Base
     self.payments.each_with_index {|p,i| p.worker_misc = vals[i] }
   end
   
-  def vote # only has one vote for the time being
-    self.votes.first
+  def vote(opts = {}) # only has one vote for the time being
+    @vote ||= self.votes.first(opts)
   end
   
   def completed_peer_review_count

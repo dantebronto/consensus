@@ -55,15 +55,15 @@ class Vote < ActiveRecord::Base
   end
 
   def option_count
-    self.options.count
+    @oc ||= self.options.count
   end
   
   def tally_count
-    self.tallies.count
+    @tc ||= self.tallies.count
   end
 
   def votes_cast
-    tally_count / option_count
+    @vsc ||= tally_count / option_count
   end
 
   def self.round_robin(num_opts)
@@ -88,11 +88,12 @@ class Vote < ActiveRecord::Base
   end
   
   def ordered_options
+    return @oos if @oos
     self.condorcet.each do |opt_id, score|
       opt = self.options.select {|x| x.id == opt_id.to_i }.first
       opt.condorcet_score = score
     end
-    self.options.sort_by {|x| x.condorcet_score }.reverse
+    @oos = self.options.sort_by {|x| x.condorcet_score }.reverse
   end
   
   def total_condorcet_points
