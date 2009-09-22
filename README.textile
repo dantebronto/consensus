@@ -14,7 +14,6 @@ The main trade-off with this mode of organization is time. Workers will undoubte
 
 The transition to a democratic workplace can be difficult. After spending extensive time in our deeply hierarchical modern workplace can one experience difficulty in attempting self reliance. This software attempts bring assistance to two main areas of difficulty.
 
-
 # *decision making* - Consensus provides a polling suite allowing for several vote types. single option, multi-option, prioritization and allocation. organizations can hold internal votes on policy, and almost instantly see transparent results.
 # *profit sharing* -  Workers who act as owners need to be concerned with payment. In combination with the voting tools, Consensus allows you to determine employee / partner payouts based on dimensions like tenure, hours worked, and capital contributions. You can even choose to include subjective metrics of contribution via a peer review tool.
 
@@ -27,5 +26,8 @@ h3. Installation
 bc. git clone git@github.com:dantebronto/consensus.git
 cp config/database.example.yml config/database.yml
 sudo rake gems:install
+rake db:migrate
+rake setup:admin
+script/server
 
 If you're interested in the project, feel free to contact me: klpresley@gmail.com
