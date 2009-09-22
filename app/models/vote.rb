@@ -119,4 +119,5 @@ class Vote < ActiveRecord::Base
   def is_for_peer_review?
     !self.options.first.payment_id.blank?
   end
+
 end

@@ -1,7 +1,42 @@
-%h1=@vote.name
+=javascript_include_tag 'js-class'
+=javascript_include_tag 'bluff-min'
 
 %span
   ="#{@vote.kind.humanize} showing #{@vote.tally_count} #{@vote.tally_count > 1 ? 'votes' : 'vote'}"
+
+  :plain
+    <script type="text/javascript">
+      function drawGraph(){
+        var g = new Bluff.Bar('bar-chart', 800);
+
+        g.set_theme({
+          colors: ['#666', '#597298', '#333', '#AFD7F5', '#999', 'black', '#a21764', 'white', '#3a5b87', '#8ab438', 
+                   'green','pink', 'yellow', 'purple', 'plum', 'lime', 'gold', 'crimson', 'azure', 'tomato'],
+          marker_color: '#aea9a9',
+          font_color: 'white',
+          background_colors: ['#494949', '#494949']
+        });
+
+        g.set_font('"Helvetica Neue",Arial,Helvetica,sans-serif');
+        g.hide_line_numbers = true;
+        g.title = 
+  ="'#{truncate(@vote.name, :length => 40)}';"
+
+  -@vote.ordered_options.each_with_index do |opt,i|
+    ="g.data('#{truncate(opt.name, :length => 30)}', #{@vote.weighted_ordered_option_scores[i]});"
+
+  :plain
+        g.draw();
+      }
+
+      $(document).ready(function(){ 
+        drawGraph();
+      });
+    </script>
+
+-if @vote.tallies.count > 0  
+  .chart_wrapper  
+    %canvas#bar-chart
 
 %table
   %tr
@@ -12,5 +47,5 @@
     %tr
       %td= "#{i+1})"
       %td=opt.name
-      %td=opt.condorcet_score
+      %td=@vote.weighted_ordered_option_scores[i] # opt.condorcet_score
       

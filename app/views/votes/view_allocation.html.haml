@@ -31,7 +31,7 @@
     });
   </script>
 
-.field
+%span
   ="#{@vote.kind.humanize} showing #{@vote.votes_cast} #{@vote.votes_cast > 1 ? 'votes' : 'vote'}"
   
   -if @vote.tallies.count > 0  
