@@ -5,10 +5,10 @@ class User < ActiveRecord::Base
   
   attr_accessor :password, :password_confirmation
 
-  validates_uniqueness_of :login, :email
+  validates_uniqueness_of :login
   validates_presence_of :password, :unless => Proc.new { |t| t.hashed_password }
   validates_presence_of :password_confirmation, :unless => Proc.new { |t| t.hashed_password }
-  validates_presence_of :login, :email
+  validates_presence_of :login
   
   validates_confirmation_of :password
 

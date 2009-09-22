@@ -4,14 +4,14 @@
   %thead
     %tr
       %th Login
-      %th Email
+      %th User since
       %th Permission
       %th{:colspan => 2}
   %tbody
     -@users.each do |user|
       %tr
         %td= user.login
-        %td= user.email
+        %td= user.created_at.to_date
         %td= user.permission_level
         %td= link_to 'Edit', edit_user_path(user)
         %td= link_to 'Delete', user, :confirm => 'Are you sure?', :method => :delete
