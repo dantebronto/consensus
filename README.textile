@@ -42,6 +42,12 @@ Once the server is running, you can login as the user admin created above. Click
 
 These votes can be created and decided upon in near real time (in a meeting setting) to help determine the best course of action for your organization.
 
+!http://consensus.bloglikepattern.com/images/allocation.png!
+_An allocation vote_
+
+!http://consensus.bloglikepattern.com/images/result.png!
+_Graph of a vote result_
+
 The other component of Consensus deals with the payment of worker-members. By clicking the "pay out" link at the top, one is able to create a payment record, or remuneration, for a desired pay period. This works just like an allocation vote, where your organization can decide how much money to spend in each area. The default areas are as follow:
 
 * Tenure - Workers can be rewarded based on how long they have been with the organization. This is a good way for those who were involved "at the ground level" to maintain ownership.
@@ -49,11 +55,14 @@ The other component of Consensus deals with the payment of worker-members. By cl
 * Hours - Workers can enter their hours worked for a given pay period.
 * Worker misc - Miscellaneous worker contributions. Setup to work like a allocation vote.
 * Worker capital - Decide how much or how quickly to repay workers based on capital contributions to the organization.
-* Org misc - Miscellaneous organization funds. set aside an amount to be used at a later time.
+* Org misc - Miscellaneous organization funds. Set aside an amount to be used at a later time.
 * Org capital - The amount of money that comes out of profits that goes back into capitalizing your organization.
 
 For all of these dimensions, it is up to your organization to determine how much emphasis to put on each category. For example, a fledgeling company might decide to put low emphasis on repaying capital contributed by workers, but put a higher emphasis on working longer hours. If a company is saving up for a new piece of equipment, they might temporarily decide to divert more funds into the organization's capital reserves. The idea is that these dimensions can be changed in an agile fashion to adjust to the needs of your organization.
 
 Once a remuneration record is created and the various dimensions are filled out, Consensus will calculate how much is owed to each worker-member based on the percentage of emphasis alloted by the members.
+
+!http://consensus.bloglikepattern.com/images/remuneration.png!
+_Remuneration, showing how much to pay each worker_
 
 If you're interested in the project, feel free to contact me: klpresley@gmail.com
