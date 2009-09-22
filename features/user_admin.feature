@@ -21,18 +21,15 @@ Feature: User CRUD
      And there is a user with login "bob"
      And I route to the new_user_path
      And I fill in "login" with "<login>"
-     And I fill in "email" with "<email>"
      And I fill in "password" with "<pass>"
      And I fill in "password confirmation" with "<pass-conf>"
      And I press "Create"
      Then I should <see>
 
      Examples:
-      | login | email       | pass  | pass-conf | see                                       |
-      | bob   | bob@bob.com | 12345 | 12345     | see "Login has already been taken"        |
-      | bob   | bob@bob.com | 12345 | 12345     | see "Email has already been taken"        |
-      | bob   | bob@bob.com |       | 12345     | see "Password doesn't match confirmation" |
-      | bob   | bob@bob.com | 12345 |           | see "Password doesn't match confirmation" |
-      |       | bob@bob.com | 12345 | 12345     | see "Login can't be blank"                |
-      | bob   |             | 12345 | 12345     | see "Email can't be blank"                |
+      | login | pass  | pass-conf | see                                       |
+      | bob   | 12345 | 12345     | see "Login has already been taken"        |
+      | bob   |       | 12345     | see "Password doesn't match confirmation" |
+      | bob   | 12345 |           | see "Password doesn't match confirmation" |
+      |       | 12345 | 12345     | see "Login can't be blank"                |
 
