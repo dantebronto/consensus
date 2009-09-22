@@ -1,3 +1,5 @@
+h3. About
+
 The consensus project is intended to assist in the operation of worker cooperatives. In a worker's cooperative, employees act in a hybrid capacity as worker, owner, and manager. Read about what makes a cooperative a "worker cooperative" "here":http://en.wikipedia.org/wiki/Worker_cooperative.
 
 Benefits of such a working arrangement include:
@@ -14,12 +16,16 @@ The transition to a democratic workplace can be difficult. After spending extens
 
 
 # *decision making* - Consensus provides a polling suite allowing for several vote types. single option, multi-option, prioritization and allocation. organizations can hold internal votes on policy, and almost instantly see transparent results.
-
 # *profit sharing* -  Workers who act as owners need to be concerned with payment. In combination with the voting tools, Consensus allows you to determine employee / partner payouts based on dimensions like tenure, hours worked, and capital contributions. You can even choose to include subjective metrics of contribution via a peer review tool.
 
-"This video":http://video.google.com/videoplay?docid=7565584850785786404 explains the profit sharing model
-    (around 23:00)
-    
+"This video":http://video.google.com/videoplay?docid=7565584850785786404 explains the profit sharing model (around 23:00)
+
 The video has the production value of a 80s educational video, but it shows a really complete idea of what this software is about.
+
+h3. Installation
+
+bc. git clone git@github.com:dantebronto/consensus.git
+cp config/database.example.yml config/database.yml
+sudo rake gems:install
 
 If you're interested in the project, feel free to contact me: klpresley@gmail.com

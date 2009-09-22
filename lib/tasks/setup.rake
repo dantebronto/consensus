@@ -5,21 +5,25 @@ namespace :setup do
     if admin
       puts "Admin user already exists"
     else
+      puts "This user has the ability to create all other users in the system"
+      login = ask("what should the admin's login be? ")
+      password = ask("what should the admin's password be? ")
       admin = User.create({
-        :email => "admin@yourdomain.com", 
-        :login => "siteadmin", 
-        :password => "p455wd!", 
-        :password_confirmation => "p455wd!",
+        :login => login, 
+        :password => password, 
+        :password_confirmation => password,
         :permission_level => -1
       })
       if admin
-        puts "Created admin user. login: siteadmin, pasword: p455wd!"
+        puts "Created admin user. login: #{login}, pasword: #{password}"
       else
         puts "Error encountered while creating admin"
       end
     end
   end
-  
-  desc "setup the admin user and renumeration schedule"
-  task :all => [:admin]
+end
+
+def ask message
+  print message
+  STDIN.gets.chomp
 end
