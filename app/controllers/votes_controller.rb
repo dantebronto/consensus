@@ -13,7 +13,10 @@ class VotesController < ApplicationController
   end
   
   def index
-    @votes = Vote.paginate(:page => params[:page], :order => "created_at DESC", :include => :options)
+    @votes = Vote.paginate({ :per_page => 10, 
+                             :page => params[:page], 
+                             :order => "created_at DESC", 
+                             :include => :options })
   end
   
   def show

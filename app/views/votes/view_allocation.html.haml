@@ -17,10 +17,10 @@
       g.set_font('"Helvetica Neue",Arial,Helvetica,sans-serif');
 
       g.title = 
-="'#{truncate(@vote.name, :length => 40)}';"
+="\"#{h truncate(@vote.name, :length => 40)}\";"
       
 -@vote.options.each do |opt|
-  ="g.data('#{truncate(opt.name, :length => 30)}', #{opt.average_percentage});"
+  ="g.data(\"#{truncate(opt.name, :length => 30)}\", #{opt.average_percentage});"
   
 :plain
       g.draw();

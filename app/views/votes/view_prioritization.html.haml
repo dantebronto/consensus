@@ -20,10 +20,10 @@
         g.set_font('"Helvetica Neue",Arial,Helvetica,sans-serif');
         g.hide_line_numbers = true;
         g.title = 
-  ="'#{truncate(@vote.name, :length => 40)}';"
+  ="\"#{h truncate(@vote.name, :length => 40)}\";"
 
   -@vote.ordered_options.each_with_index do |opt,i|
-    ="g.data('#{truncate(opt.name, :length => 30)}', #{@vote.weighted_ordered_option_scores[i]});"
+    ="g.data(\"#{h truncate(opt.name, :length => 30)}\", #{@vote.weighted_ordered_option_scores[i]});"
 
   :plain
         g.draw();

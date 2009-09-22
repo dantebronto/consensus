@@ -11,11 +11,6 @@ class Remuneration < ActiveRecord::Base
     end
   end
   
-  def after_initialize
-    self.start_date = Date.today
-    self.end_date = Date.today + 1.week
-  end
-  
   def after_create
     this_vote = Vote.new({
       :name => "peer review for #{self.start_date} to #{self.end_date}",

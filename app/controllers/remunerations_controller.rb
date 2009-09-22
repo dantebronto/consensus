@@ -22,7 +22,7 @@ class RemunerationsController < ApplicationController
   end
 
   def index
-    @remunerations = Remuneration.paginate(:page => params[:page], :order => "created_at DESC")
+    @remunerations = Remuneration.paginate(:page => params[:page], :order => "created_at DESC", :per_page => 10)
   end
 
   def show
@@ -31,6 +31,8 @@ class RemunerationsController < ApplicationController
 
   def new
     @remuneration = Remuneration.new
+    @remuneration.start_date = Date.today
+    @remuneration.end_date = Date.today + 1.week
     @round_robin = Vote.round_robin(7)
   end
 

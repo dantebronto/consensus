@@ -14,8 +14,8 @@ The main trade-off with this mode of organization is time. Workers will undoubte
 
 The transition to a democratic workplace can be difficult. After spending extensive time in our deeply hierarchical modern workplace can one experience difficulty in attempting self reliance. This software attempts bring assistance to two main areas of difficulty.
 
-# *decision making* - Consensus provides a polling suite allowing for several vote types. single option, multi-option, prioritization and allocation. organizations can hold internal votes on policy, and almost instantly see transparent results.
-# *profit sharing* -  Workers who act as owners need to be concerned with payment. In combination with the voting tools, Consensus allows you to determine employee / partner payouts based on dimensions like tenure, hours worked, and capital contributions. You can even choose to include subjective metrics of contribution via a peer review tool.
+# *Decision making* - Consensus provides a polling suite allowing for several vote types. single option, multi-option, prioritization and allocation. organizations can hold internal votes on policy, and almost instantly see transparent results.
+# *Profit sharing* -  Workers who act as owners need to be concerned with payment. In combination with the voting tools, Consensus allows you to determine employee / partner payouts based on dimensions like tenure, hours worked, and capital contributions. You can even choose to include subjective metrics of contribution via a peer review tool.
 
 "This video":http://video.google.com/videoplay?docid=7565584850785786404 explains the profit sharing model (around 23:00)
 
@@ -24,10 +24,36 @@ The video has the production value of a 80s educational video, but it shows a re
 h3. Installation
 
 bc. git clone git@github.com:dantebronto/consensus.git
+cd consensus
 cp config/database.example.yml config/database.yml
 sudo rake gems:install
 rake db:migrate
 rake setup:admin
 script/server
+
+h3. Usage
+
+Once the server is running, you can login as the user admin created above. Click the user admin link in the header and proceed to create a user account for everyone in your organization. Then you should be able to "view active votes" to begin setting up votes. Consensus currently has four vote types:
+
+* Single option - The voter is asked to choose one of many created options (via radio buttons).
+* Multi-option - The voter is asked to select any number of preferred options (via checkboxes).
+* Prioritization - The voter is asked to drag and drop a list of options in order of preference. Once everyone in the organization does the same, the result will be a global preference list from most to least desired options.
+* Allocation - The voter is asked to drag a group of linked sliders (always equaling 100%) to allocate a quantity of something across the various options.
+
+These votes can be created and decided upon in near real time (in a meeting setting) to help determine the best course of action for your organization.
+
+The other component of Consensus deals with the payment of worker-members. By clicking the "pay out" link at the top, one is able to create a payment record, or remuneration, for a desired pay period. This works just like an allocation vote, where your organization can decide how much money to spend in each area. The default areas are as follow:
+
+* Tenure - Workers can be rewarded based on how long they have been with the organization. This is a good way for those who were involved "at the ground level" to maintain ownership.
+* Peer review - A prioritization vote can be held each pay period to determine subjective worker contribution.
+* Hours - Workers can enter their hours worked for a given pay period.
+* Worker misc - Miscellaneous worker contributions. Setup to work like a allocation vote.
+* Worker capital - Decide how much or how quickly to repay workers based on capital contributions to the organization.
+* Org misc - Miscellaneous organization funds. set aside an amount to be used at a later time.
+* Org capital - The amount of money that comes out of profits that goes back into capitalizing your organization.
+
+For all of these dimensions, it is up to your organization to determine how much emphasis to put on each category. For example, a fledgeling company might decide to put low emphasis on repaying capital contributed by workers, but put a higher emphasis on working longer hours. If a company is saving up for a new piece of equipment, they might temporarily decide to divert more funds into the organization's capital reserves. The idea is that these dimensions can be changed in an agile fashion to adjust to the needs of your organization.
+
+Once a remuneration record is created and the various dimensions are filled out, Consensus will calculate how much is owed to each worker-member based on the percentage of emphasis alloted by the members.
 
 If you're interested in the project, feel free to contact me: klpresley@gmail.com
