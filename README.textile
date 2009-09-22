@@ -1,3 +1,25 @@
-TODO Fill this file with some information.
+The consensus project is intended to assist in the operation of worker cooperatives. In a worker's cooperative, employees act in a hybrid capacity as worker, owner, and manager. Read about what makes a cooperative a "worker cooperative" "here":http://en.wikipedia.org/wiki/Worker_cooperative.
 
-!http://static.reddit.com/reddit.com.header.png!
+Benefits of such a working arrangement include:
+
+* Democratic control - everyone has a voice in operating procedures
+* Self ownership - workers take pride and initiative
+* Fair remuneration - payment based more on actual effort or contribution 
+* Efficiency - no more exorbitant expenditure on a potentially ineffective management layer. you don't need someone to crack the whip when people are self motivated.
+* Professional improvement - it is in the best interest of a coop to hire workers who can "wear many hats" (balanced job complexes)
+  
+The main trade-off with this mode of organization is time. Workers will undoubtedly spend more time in an administrative capacity as opposed to a specific, potentially rote, task.
+
+The transition to a democratic workplace can be difficult. After spending extensive time in our deeply hierarchical modern workplace can one experience difficulty in attempting self reliance. This software attempts bring assistance to two main areas of difficulty.
+
+
+# *decision making* - Consensus provides a polling suite allowing for several vote types. single option, multi-option, prioritization and allocation. organizations can hold internal votes on policy, and almost instantly see transparent results.
+
+# *profit sharing* -  Workers who act as owners need to be concerned with payment. In combination with the voting tools, Consensus allows you to determine employee / partner payouts based on dimensions like tenure, hours worked, and capital contributions. You can even choose to include subjective metrics of contribution via a peer review tool.
+
+"This video":http://video.google.com/videoplay?docid=7565584850785786404 explains the profit sharing model
+    (around 23:00)
+    
+The video has the production value of a 80s educational video, but it shows a really complete idea of what this software is about.
+
+If you're interested in the project, feel free to contact me: klpresley@gmail.com
