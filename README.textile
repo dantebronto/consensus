@@ -14,7 +14,7 @@ The main trade-off with this mode of organization is time. Workers will undoubte
 
 The transition to a democratic workplace can be difficult. After spending extensive time in our deeply hierarchical modern workplace can one experience difficulty in attempting self reliance. This software attempts bring assistance to two main areas of difficulty.
 
-# *Decision making* - Consensus provides a polling suite allowing for several vote types. single option, multi-option, prioritization and allocation. organizations can hold internal votes on policy, and almost instantly see transparent results.
+# *Decision making* - Consensus provides a polling suite allowing for several vote types: single option, multi-option, prioritization and allocation. organizations can hold internal votes on policy, and almost instantly see transparent results.
 # *Profit sharing* -  Workers who act as owners need to be concerned with payment. In combination with the voting tools, Consensus allows you to determine employee / partner payouts based on dimensions like tenure, hours worked, and capital contributions. You can even choose to include subjective metrics of contribution via a peer review tool.
 
 "This video":http://video.google.com/videoplay?docid=7565584850785786404 explains the profit sharing model (around 23:00)
@@ -45,7 +45,7 @@ These votes can be created and decided upon in near real time (in a meeting sett
 !http://consensus.bloglikepattern.com/images/allocation.png!
 _An allocation vote_
 
-!http://consensus.bloglikepattern.com/images/result.png!
+!http://consensus.bloglikepattern.com/images/results.png!
 _Graph of a vote result_
 
 The other component of Consensus deals with the payment of worker-members. By clicking the "pay out" link at the top, one is able to create a payment record, or remuneration, for a desired pay period. This works just like an allocation vote, where your organization can decide how much money to spend in each area. The default areas are as follow:

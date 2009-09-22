@@ -26,12 +26,6 @@
               take me
             %br
             home
-        %li
-          %a{ :href => "/about" }
-            %span
-              learn more
-            %br
-            About
         - if logged_in?
           %li
             %a{ :href => "/votes" }
@@ -45,6 +39,20 @@
                 pay out
               %br
               remunerate
+        - else
+          %li
+            %a{ :href => "/about" }
+              %span
+                learn more
+              %br
+              About
+          %li
+            %a{ :href => "/usage" }
+              %span
+                try it
+              %br
+              Usage
+      
 
           - if current_user.admin?
             %li
