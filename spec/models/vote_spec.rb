@@ -5,11 +5,11 @@ describe Vote do
   describe 'prioritization voting' do
     
     before do
-      @vote = Factory(:prioritization_vote)
       @al_op = Factory(:alice_opt)
       @bo_op = Factory(:bob_opt)
       @ch_op = Factory(:charlie_opt)
-      @vote.options = [@al_op, @bo_op, @ch_op]
+      options = [@al_op, @bo_op, @ch_op]
+      @vote = Factory(:prioritization_vote, :options => options)
       
       @vote.tallies[0].option_order = "#{@al_op.id}|#{@bo_op.id}|#{@ch_op.id}" # alice, bob, charlie
       @vote.tallies[1].option_order = "#{@bo_op.id}|#{@al_op.id}|#{@ch_op.id}" # bob, alice, charlie

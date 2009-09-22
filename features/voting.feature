@@ -3,7 +3,7 @@ Feature: Basic Voting Flows
   In order to make my preference known
   I want to be able to vote and view voting results
   
-  Scenario: Vote create
+  Scenario: Vote create fail, not enough options
     Given I am logged in as a user
     And I follow "votes"
     Then I should see "Current Votes"
@@ -13,9 +13,9 @@ Feature: Basic Voting Flows
     
     And I fill in "name" with "vote name"
     And I press "Create"
-    Then I should see "Vote was successfully created"
+    Then I should see "must have at least two topics on which to vote"
     
-  Scenario: Vote create fail
+  Scenario: Vote create fail, missing name
     Given I am logged in as a user
     And I follow "votes"
     Then I should see "Current Votes"

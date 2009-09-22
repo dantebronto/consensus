@@ -16,9 +16,9 @@ class Payment < ActiveRecord::Base
   end
   
   def percentage_of_total_hours
-    total = self.remuneration.payments.map(&:hours).sum
-    return 0 if total == 0
-    self.hours / total.to_f
+    @total ||= self.remuneration.payments.map(&:hours).sum 
+    return 0 if @total == 0
+    self.hours / @total.to_f
   end
   
   def hours_amount

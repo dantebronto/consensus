@@ -1,7 +1,7 @@
 class RemunerationsController < ApplicationController
 
   def categories
-    @remuneration = Remuneration.find_by_id(params[:id]) #, :include => :payments)
+    @remuneration = Remuneration.find_by_id(params[:id], :include => :users)
     case params[:category]
     when 'tenure'
       render :action => 'tenure'
@@ -26,7 +26,7 @@ class RemunerationsController < ApplicationController
   end
 
   def show
-    @remuneration = Remuneration.find(params[:id])
+    @remuneration = Remuneration.find(params[:id], :include => [:users, :payments])
   end
 
   def new
