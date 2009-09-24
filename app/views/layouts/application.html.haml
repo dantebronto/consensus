@@ -39,6 +39,13 @@
                 pay out
               %br
               remunerate
+          - if current_user.admin?
+            %li
+              %a{ :href => "/users" }
+                %span
+                  user admin
+                %br
+                manage
         - else
           %li
             %a{ :href => "/about" }
@@ -52,15 +59,7 @@
                 try it
               %br
               Usage
-      
 
-          - if current_user.admin?
-            %li
-              %a{ :href => "/users" }
-                %span
-                  user admin
-                %br
-                manage
         %li.last
           =render_login_logout  
         
