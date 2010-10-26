@@ -62,7 +62,7 @@ For all of these dimensions, it is up to your organization to determine how much
 
 Once a remuneration record is created and the various dimensions are filled out, Consensus will calculate how much is owed to each worker-member based on the percentage of emphasis alloted by the members.
 
-!http://consensus.bloglikepattern.com/images/remuneration.png!
+!http://crawwwl.com/images/remuneration.png!
 _Remuneration, showing how much of the profits each worker is entitled to_
 
 If you're interested in the project, feel free to contact me: klpresley@gmail.com
